@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import static android.R.attr.button;
+
 
 public class SimpleLoginActivity extends Activity {
 
