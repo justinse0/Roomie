@@ -24,8 +24,11 @@ public class Model extends Observable{
         return 0;
     }
     //add the new account that user entered to the list of accounts
+    public void AddNewAccount(String acc){
+
+    }
     //add the new password that user entered to the list of passwords
-    public void AddNewAccount(String acc, String pass){
+    public void AddNewPassword(String pass){
 
     }
 
@@ -43,6 +46,18 @@ public class Model extends Observable{
     }
     // if user choose to create new
     public void ToNewUser(){
+
+    }
+
+    // ex https://stackoverflow.com/questions/30013292/how-do-i-write-multiple-objects-to-the-serializable-file-and-read-them-when-the
+    //https://stackoverflow.com/questions/25147799/java-arraylist-of-arraylist
+
+    //save the lists to local files
+    public void SaveListsToFile(){
+
+    }
+    //load the lists from local files
+    public void LoadList(){
 
     }
 
