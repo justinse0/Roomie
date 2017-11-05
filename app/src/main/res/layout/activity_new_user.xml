@@ -1,9 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="cs121.ucsc.roomie.NewUserActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/ReturnText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:text="Already Registered?"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp"
+        android:layout_below="@+id/RegisterButton"
+        android:layout_alignStart="@+id/PasswordRegister"
+        android:layout_marginStart="11dp" />
+
+    <EditText
+        android:id="@+id/NameRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Name"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="101dp"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/RegisterTitle"
+        android:layout_alignStart="@+id/UsernameRegister" />
+
+    <EditText
+        android:id="@+id/UsernameRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Username"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="101dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/RegisterTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="44sp"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="75dp"
+        android:layout_marginTop="104dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/PasswordRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:text="Password"
+        android:layout_below="@+id/UsernameRegister"
+        android:layout_alignStart="@+id/UsernameRegister" />
+
+    <Button
+        android:id="@+id/RegisterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:onClick="Return"
+        android:text="Register"
+        android:layout_below="@+id/PasswordRegister"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/ReturnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:onClick="LoginReturn"
+        android:text="Click Here"
+        android:textAllCaps="false"
+        android:textColor="@android:color/holo_red_light"
+        android:layout_alignEnd="@+id/PasswordRegister"
+        android:layout_alignBottom="@+id/ReturnText"
+        android:layout_alignTop="@+id/ReturnText" />
+</RelativeLayout>

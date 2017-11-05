@@ -59,10 +59,11 @@
         android:id="@+id/newaccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Account"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="45dp" />
+        android:layout_marginBottom="45dp"
+        android:onClick="GoToNewUser"
+        android:text="Create Account" />
 
     <Button
         android:id="@+id/login"
