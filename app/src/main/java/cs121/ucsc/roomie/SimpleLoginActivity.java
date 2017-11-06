@@ -15,7 +15,7 @@ public class SimpleLoginActivity extends Activity {
 
 
     private Button login;
-    //private Button newuser;
+
     private EditText account;
     private EditText password;
 
@@ -24,7 +24,6 @@ public class SimpleLoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_login);
         login = (Button) findViewById(R.id.login);
-        //newuser = (Button) findViewById(R.id.newaccount);
 
         account = (EditText) findViewById(R.id.account);
         password = (EditText) findViewById(R.id.password);
@@ -32,7 +31,6 @@ public class SimpleLoginActivity extends Activity {
     }
 
     public void GoToNewUser(View view){
-        System.out.println("WHAT THE ACTUAL FUCK, JUST WORK U PIECE OF SHIT");
         Intent intent = new Intent(this, NewUserActivity.class);
         startActivity(intent);
     }
