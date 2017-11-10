@@ -72,7 +72,8 @@
         android:layout_below="@+id/password"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="23dp"
-        android:text="Login" />
+        android:text="Login"
+        android:onClick="Login"/>
 
 
 </RelativeLayout>

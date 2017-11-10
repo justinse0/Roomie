@@ -1,14 +1,29 @@
 package cs121.ucsc.roomie;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+
+
 public class NewUserActivity extends Activity {
+
+    private static final String TAG ="DATA" ;
 
     EditText NameRegister;
     EditText UsernameRegister;
@@ -18,6 +33,7 @@ public class NewUserActivity extends Activity {
     static String UsernameStore;
     static String PasswordStore;
 
+    static List<User> userList = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +53,25 @@ public class NewUserActivity extends Activity {
         this.NameStore = NameRegister.getText().toString();
         this.UsernameStore = UsernameRegister.getText().toString();
         this.PasswordStore = PasswordRegister.getText().toString();
-        Toast.makeText(this,"Registered!",Toast.LENGTH_LONG).show();
+
+
+        User u = new User(NameStore, UsernameStore, PasswordStore);
+        userList.add(u);
+        saveUserList(userList);
+
         Intent intent = new Intent(this, SimpleLoginActivity.class);
         startActivity(intent);
+    }
+    public void saveUserList(List<User> u) {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        Gson gson = new Gson();
+
+        String json = gson.toJson(u);
+
+        editor.putString(TAG, json);
+
+        Toast.makeText(this,"stored!",Toast.LENGTH_LONG).show();
+        editor.commit();
     }
 }

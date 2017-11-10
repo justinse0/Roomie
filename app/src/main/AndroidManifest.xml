@@ -18,7 +18,9 @@
         </activity>
         <activity android:name=".NewUserActivity" />
         <activity android:name=".MessageActivity" />
-        <activity android:name=".ToDoActivity"></activity>
+        <activity android:name=".ToDoActivity" />
+        <activity android:name=".MainActivity">
+        </activity>
     </application>
 
 </manifest>
