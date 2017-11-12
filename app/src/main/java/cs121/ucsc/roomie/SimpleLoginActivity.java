@@ -43,7 +43,7 @@ public class SimpleLoginActivity extends Activity {
 
         account = (EditText) findViewById(R.id.account);
         password = (EditText) findViewById(R.id.password);
-
+        u = getSavedUser();
     }
 
     public void GoToNewUser(View view){
@@ -55,7 +55,6 @@ public class SimpleLoginActivity extends Activity {
         this.nAcc = account.getText().toString();
         this.nPass = password.getText().toString();
 
-        u = getSavedUser();
 
         for(int i = 0; i<u.size();i++){
             if(u.get(i).username.equals(nAcc) && u.get(i).password.equals(nPass)){
