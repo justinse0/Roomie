@@ -23,20 +23,24 @@ public class MainActivity extends Activity {
     private User currUser;
     private boolean secondPress;
     private String[] userArray;
+    Button displayMates ;
+    Button messageStart  ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        listView = new ListView(this);
         roomies = SimpleLoginActivity.getUsers();
         String username = getIntent().getStringExtra("CurrentUser");
         //initialize the connection to SendBird servers
-        SendBird.init(APPID, this);
+       // SendBird.init(APPID, this);
 
         //create the list and buttons for displaying roommates
         //and find the current user
         listView = (ListView) findViewById(R.id.roomieList);
-        Button displayMates = (Button) findViewById(R.id.roomies);
+         displayMates = (Button) findViewById(R.id.roomies);
+         messageStart = (Button) findViewById(R.id.messaging) ;
         secondPress = false;
         for(int i=0; i<roomies.size();i++){
             if(roomies.get(i).username.equals(username)){
@@ -56,16 +60,25 @@ public class MainActivity extends Activity {
         for(int i=0; i< counter; i++){
             userArray[i] = userList.get(i);
         }
-
-        ArrayAdapter<String> listArrayAdapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_2, userArray);
-       if(listArrayAdapter != null) {
+        ArrayAdapter<String> listArrayAdapter = new ArrayAdapter<String>(MainActivity.this,
+                android.R.layout.simple_list_item_1, userArray);
+        if(listArrayAdapter != null) {
            listView.setAdapter(listArrayAdapter);
-       }
+        }
 
-
-        displayMates.setOnClickListener(new View.OnClickListener(){
+        messageStart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, MessageActivity.class);
+                intent.putExtra("CurrentUser", currUser.username);
+                startActivity(intent);
+
+
+            }
+        });
+        displayMates.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 if(listView.getVisibility() == View.INVISIBLE){
                     listView.setVisibility(View.VISIBLE);
                 }else{
@@ -74,14 +87,19 @@ public class MainActivity extends Activity {
                 if(secondPress == false){
                     view.getBackground().setColorFilter(0xe0f47521, PorterDuff.Mode.SRC_ATOP);
                     view.invalidate();
+                    secondPress = true;
                 }else if(secondPress == true){
                     view.getBackground().clearColorFilter();
                     view.invalidate();
+                    secondPress = false;
                 }
-
             }
         });
     }
+
+
+
+
 
 
 

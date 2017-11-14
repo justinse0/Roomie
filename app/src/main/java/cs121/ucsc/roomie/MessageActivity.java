@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -25,37 +26,46 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
+import java.util.List;
 
 
 public class MessageActivity extends AppCompatActivity {
    // private ChannelHandler openHandler;
     //private ConnectionHandler connectionHandler;
+    private List<User> roomies;
 
-        public static String text_1 = "";
-    private ArrayList<String> messageItems;
+    public static String text_1 = "";
+    private static ArrayList<String> messageItems;
     ListView listView;
     public String yearString = new String("");
-
+    private User currUser;
+    private int x = 0;
+    static String[] listString;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        String[] listString = new String[0];
+         listString = new String[0];
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
+        roomies = SimpleLoginActivity.getUsers();
+        final String username = getIntent().getStringExtra("CurrentUser");
 
         //create the button, listview, and textfield assignments
-        Button sendButton = (Button) findViewById(R.id.sendButton);
+        final Button sendButton = (Button) findViewById(R.id.sendButton);
         final EditText message = (EditText) findViewById(R.id.messageText);
         messageItems = new ArrayList<String>();
         listView = (ListView) findViewById(R.id.ListView);
-        int x = 0;
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(MessageActivity.this, android.R.layout.simple_expandable_list_item_1, listString);
+        listView.setAdapter(listAdapter);
+
         this.PopulateList( x, listString);
+
+
 
         sendButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 //open output file
-                Intent intent = new Intent(MessageActivity.this, MainActivity.class);
+    //            Intent intent = new Intent(MessageActivity.this, MainActivity.class);
                 try {
                     File file = getFileStreamPath("messageFile.txt");
                     if(!file.exists()){
@@ -66,31 +76,36 @@ public class MessageActivity extends AppCompatActivity {
 
                     //write data string to file
                     //THIS IS WHERE I NEED THE USER'S NAME (CAPS FOR VISIBILITY)
-                    text_1 = "User Name: " + message.getText().toString();
+                    text_1 = username + message.getText().toString();
                     String string = text_1;
                     writer.write(string.getBytes());
 
 
-                    Bundle bundle = new Bundle();
-                    intent.putExtras(bundle);
+       //             Bundle bundle = new Bundle();
+      //              intent.putExtras(bundle);
 
                     //open new file
                     writer.flush();
                     writer.close();
-
+                    PopulateList(x, listString);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
-
+                message.setText("");
             }
         });
 
 
     }
 
+    private void callPopulateList(int x, String[] strArray){
+        this.PopulateList(x, strArray);
+    }
+
     //populate  the list. I need to be able to refresh it every time somebody sends a message
     private void PopulateList( int counter, String[] strArray ){
         try {
+            counter  = 0;
             FileInputStream messageFile = openFileInput("messageFile.txt");
             DataInputStream in = new DataInputStream(messageFile);
             BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -104,6 +119,8 @@ public class MessageActivity extends AppCompatActivity {
                 strArray[i] = messageItems.get(i);
             }
             messageFile.close();
+            ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(MessageActivity.this, android.R.layout.simple_expandable_list_item_1, listString);
+            listView.setAdapter(listAdapter);
 
         }catch(Exception e){
             e.printStackTrace();

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Roomie</string>
+    <string name="Roommates">roomies</string>
+    <string name="send">Send</string>
 </resources>

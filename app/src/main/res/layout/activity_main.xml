@@ -6,31 +6,54 @@
     android:layout_height="match_parent"
     tools:context="cs121.ucsc.roomie.MainActivity">
 
-    <Button
-        android:id="@+id/roomies"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginBottom="36dp"
-        android:layout_marginStart="25dp"
-        android:text="Roommates" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignEnd="@+id/roomies"
-        android:orientation="vertical"
-        android:visibility="visible">
+        android:orientation="vertical">
 
-        <ListView
-            android:id="@+id/roomieList"
+        <LinearLayout
+            android:id="@+id/listView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/roomies"
-            android:layout_marginTop="52dp"
-            android:visibility="invisible" />
+            android:layout_weight="1"
+            android:gravity="top"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/roomieList"
+                android:layout_width="match_parent"
+                android:layout_height="242dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="4"
+                android:visibility="visible">
+
+            </ListView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/buttonView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/roomies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Roommates" />
+
+            <Button
+                android:id="@+id/messaging"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Messaging" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -66,6 +66,7 @@ public class SimpleLoginActivity extends Activity {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra("CurrentUser", u.get(i).username);
                 startActivity(intent);
+                break;
             }
             else{
                 //Toast.makeText(this,u.size(),Toast.LENGTH_LONG).show();
