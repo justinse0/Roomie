@@ -10,83 +10,95 @@
         android:id="@+id/ReturnText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
+        android:layout_below="@+id/RegisterButton"
+        android:layout_weight="1"
+        android:layout_toStartOf="@+id/RegisterButton"
         android:text="Already Registered?"
         android:textColor="@android:color/holo_red_light"
-        android:textSize="14sp"
-        android:layout_below="@+id/RegisterButton"
-        android:layout_alignStart="@+id/PasswordRegister"
-        android:layout_marginStart="11dp" />
+        android:textSize="14sp" />
 
     <EditText
         android:id="@+id/NameRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/UsernameRegister"
+        android:layout_below="@+id/RegisterTitle"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="Name"
         android:visibility="visible"
         tools:layout_editor_absoluteX="72dp"
-        tools:layout_editor_absoluteY="101dp"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/RegisterTitle"
-        android:layout_alignStart="@+id/UsernameRegister" />
+        tools:layout_editor_absoluteY="101dp" />
 
     <EditText
         android:id="@+id/UsernameRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/NameRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
         android:ems="10"
         android:hint="Username"
         android:visibility="visible"
         tools:layout_editor_absoluteX="72dp"
-        tools:layout_editor_absoluteY="101dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        tools:layout_editor_absoluteY="101dp" />
 
     <TextView
         android:id="@+id/RegisterTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
         android:text="Register"
         android:textColor="@android:color/holo_red_light"
         android:textSize="44sp"
         tools:layout_editor_absoluteX="105dp"
-        tools:layout_editor_absoluteY="75dp"
-        android:layout_marginTop="104dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        tools:layout_editor_absoluteY="75dp" />
 
     <EditText
         android:id="@+id/PasswordRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:ems="10"
-        android:inputType="textPassword"
 
+        android:layout_alignStart="@+id/UsernameRegister"
         android:layout_below="@+id/UsernameRegister"
-        android:layout_alignStart="@+id/UsernameRegister" />
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/RegisterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_below="@+id/houseName"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
         android:onClick="Return"
-        android:text="Register"
-        android:layout_below="@+id/PasswordRegister"
-        android:layout_centerHorizontal="true" />
+        android:text="Register" />
 
     <Button
         android:id="@+id/ReturnButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_alignBaseline="@+id/ReturnText"
+        android:layout_alignBottom="@+id/ReturnText"
+        android:layout_alignEnd="@+id/houseName"
         android:background="@android:color/transparent"
         android:onClick="LoginReturn"
         android:text="Click Here"
         android:textAllCaps="false"
-        android:textColor="@android:color/holo_red_light"
-        android:layout_alignEnd="@+id/PasswordRegister"
-        android:layout_alignBottom="@+id/ReturnText"
-        android:layout_alignTop="@+id/ReturnText" />
+        android:textColor="@android:color/holo_red_light" />
+
+    <EditText
+        android:id="@+id/houseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/PasswordRegister"
+        android:layout_below="@+id/PasswordRegister"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="House Name" />
 </RelativeLayout>

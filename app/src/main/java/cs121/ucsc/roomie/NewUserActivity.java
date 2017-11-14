@@ -28,10 +28,12 @@ public class NewUserActivity extends Activity {
     EditText NameRegister;
     EditText UsernameRegister;
     EditText PasswordRegister;
+    EditText HouseNameRegister;
 
     static String NameStore;
     static String UsernameStore;
     static String PasswordStore;
+    static String HouseNameStore;
 
     static List<User> userList = new ArrayList<>();
     @Override
@@ -41,6 +43,9 @@ public class NewUserActivity extends Activity {
         NameRegister = (EditText) findViewById(R.id.NameRegister);
         UsernameRegister = (EditText) findViewById(R.id.UsernameRegister);
         PasswordRegister = (EditText) findViewById(R.id.PasswordRegister);
+        HouseNameRegister = (EditText) findViewById(R.id.houseName);
+
+
 
     }
 
@@ -53,9 +58,10 @@ public class NewUserActivity extends Activity {
         this.NameStore = NameRegister.getText().toString();
         this.UsernameStore = UsernameRegister.getText().toString();
         this.PasswordStore = PasswordRegister.getText().toString();
+        this.HouseNameStore = HouseNameRegister.getText().toString();
 
 
-        User u = new User(NameStore, UsernameStore, PasswordStore);
+        User u = new User(NameStore, UsernameStore, PasswordStore, HouseNameStore);
         userList.add(u);
         saveUserList(userList);
 

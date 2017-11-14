@@ -6,4 +6,31 @@
     android:layout_height="match_parent"
     tools:context="cs121.ucsc.roomie.MainActivity">
 
+    <Button
+        android:id="@+id/roomies"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="36dp"
+        android:layout_marginStart="25dp"
+        android:text="Roommates" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignEnd="@+id/roomies"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ListView
+            android:id="@+id/roomieList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/roomies"
+            android:layout_marginTop="52dp"
+            android:visibility="invisible" />
+    </LinearLayout>
+
 </RelativeLayout>

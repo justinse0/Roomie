@@ -34,7 +34,7 @@ public class SimpleLoginActivity extends Activity {
 
     private String nAcc;
     private String nPass;
-    private List<User> u ;
+    private static List<User> u ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +44,8 @@ public class SimpleLoginActivity extends Activity {
         account = (EditText) findViewById(R.id.account);
         password = (EditText) findViewById(R.id.password);
         u = getSavedUser();
+       // u.clear();
+        //saveUserList(u);
     }
 
     public void GoToNewUser(View view){
@@ -51,6 +53,9 @@ public class SimpleLoginActivity extends Activity {
         startActivity(intent);
     }
 
+    public static List<User> getUsers(){
+        return u;
+    }
     public void Login(View view){
         this.nAcc = account.getText().toString();
         this.nPass = password.getText().toString();
@@ -59,9 +64,11 @@ public class SimpleLoginActivity extends Activity {
         for(int i = 0; i<u.size();i++){
             if(u.get(i).username.equals(nAcc) && u.get(i).password.equals(nPass)){
                 Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("CurrentUser", u.get(i).username);
                 startActivity(intent);
             }
             else{
+                //Toast.makeText(this,u.size(),Toast.LENGTH_LONG).show();
                 Toast.makeText(this,"Incorrect account or password!",Toast.LENGTH_LONG).show();
                 break;
             }
@@ -75,6 +82,18 @@ public class SimpleLoginActivity extends Activity {
         Type type = new TypeToken<ArrayList<User>>() {}.getType();
         ArrayList<User> arrayList = gson.fromJson(json, type);
         return arrayList;
+    }
+    public void saveUserList(List<User> u) {
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        Gson gson = new Gson();
+
+        String json = gson.toJson(u);
+
+        editor.putString(TAG, json);
+
+        Toast.makeText(this,"stored!",Toast.LENGTH_LONG).show();
+        editor.commit();
     }
 }
 
