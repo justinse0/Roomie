@@ -25,13 +25,21 @@ public class MainActivity extends Activity {
     private String[] userArray;
     Button displayMates ;
     Button messageStart  ;
+    public static String[] staticNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        String[] staticNames = {"John Cena",
+                "Alan Rickman",
+                "Olivia Newton-John",
+                "Aziz Ansari",
+                "Mindy Kaling"};
+        //staticNames = new String[5];
         listView = new ListView(this);
         roomies = SimpleLoginActivity.getUsers();
+        userList = new ArrayList<String>();
         String username = getIntent().getStringExtra("CurrentUser");
         //initialize the connection to SendBird servers
        // SendBird.init(APPID, this);
@@ -47,7 +55,7 @@ public class MainActivity extends Activity {
                 currUser = roomies.get(i);
                 break;
             }
-        }
+        }/*
         int counter=0;
         for(int i=0; i<roomies.size(); i++){
             if(!(roomies.get(i).username.equals(currUser.username)) &&
@@ -55,13 +63,19 @@ public class MainActivity extends Activity {
                 userList.add(roomies.get(i).username);
                 counter+=1;
             }
-        }
+        }*/
+        for(int i=0; i<5; i++){
+
+                userList.add(staticNames[i]);
+
+        }/*
         userArray = new String[counter];
         for(int i=0; i< counter; i++){
             userArray[i] = userList.get(i);
         }
+        */
         ArrayAdapter<String> listArrayAdapter = new ArrayAdapter<String>(MainActivity.this,
-                android.R.layout.simple_list_item_1, userArray);
+                android.R.layout.simple_list_item_1, userList);
         if(listArrayAdapter != null) {
            listView.setAdapter(listArrayAdapter);
         }

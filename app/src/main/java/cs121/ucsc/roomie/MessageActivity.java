@@ -34,6 +34,7 @@ public class MessageActivity extends AppCompatActivity {
     //private ConnectionHandler connectionHandler;
     private List<User> roomies;
 
+
     public static String text_1 = "";
     private static ArrayList<String> messageItems;
     ListView listView;
@@ -41,23 +42,37 @@ public class MessageActivity extends AppCompatActivity {
     private User currUser;
     private int x = 0;
     static String[] listString;
+
+    public static String[] staticNames;
+    //for the demo
+    private ArrayList<String> userList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-         listString = new String[0];
+        String[] staticNames = {"John: Who wants to go out for dinner tonight",
+                "Olivia: Sorry, I have  a Midterm tomorrow :/",
+                "Alan: I'm down! Let's go to Pericos",
+                "John: Sweet, I'll be home at 7:00"};
+        listString = new String[0];
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
         roomies = SimpleLoginActivity.getUsers();
         final String username = getIntent().getStringExtra("CurrentUser");
 
+        userList = new ArrayList<String>();
+        for(int i=0; i<4; i++){
+
+            userList.add(staticNames[i]);
+
+        }
         //create the button, listview, and textfield assignments
         final Button sendButton = (Button) findViewById(R.id.sendButton);
         final EditText message = (EditText) findViewById(R.id.messageText);
         messageItems = new ArrayList<String>();
         listView = (ListView) findViewById(R.id.ListView);
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(MessageActivity.this, android.R.layout.simple_expandable_list_item_1, listString);
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(MessageActivity.this, android.R.layout.simple_expandable_list_item_1, userList);
         listView.setAdapter(listAdapter);
 
-        this.PopulateList( x, listString);
+        //this.PopulateList( x, listString);
 
 
 
@@ -87,7 +102,7 @@ public class MessageActivity extends AppCompatActivity {
                     //open new file
                     writer.flush();
                     writer.close();
-                    PopulateList(x, listString);
+                    //PopulateList(x, listString);
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -98,9 +113,7 @@ public class MessageActivity extends AppCompatActivity {
 
     }
 
-    private void callPopulateList(int x, String[] strArray){
-        this.PopulateList(x, strArray);
-    }
+
 
     //populate  the list. I need to be able to refresh it every time somebody sends a message
     private void PopulateList( int counter, String[] strArray ){
