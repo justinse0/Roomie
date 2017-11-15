@@ -24,6 +24,7 @@ public class MainActivity extends Activity {
     private boolean secondPress;
     private String[] userArray;
     Button displayMates ;
+    Button goTodo;
     Button messageStart  ;
     public static String[] staticNames;
 
@@ -48,7 +49,8 @@ public class MainActivity extends Activity {
         //and find the current user
         listView = (ListView) findViewById(R.id.roomieList);
          displayMates = (Button) findViewById(R.id.roomies);
-         messageStart = (Button) findViewById(R.id.messaging) ;
+         goTodo = (Button) findViewById(R.id.todo);
+         messageStart = (Button) findViewById(R.id.messaging);
         secondPress = false;
         for(int i=0; i<roomies.size();i++){
             if(roomies.get(i).username.equals(username)){
@@ -86,10 +88,18 @@ public class MainActivity extends Activity {
                 Intent intent = new Intent(MainActivity.this, MessageActivity.class);
                 intent.putExtra("CurrentUser", currUser.username);
                 startActivity(intent);
-
-
             }
         });
+
+        goTodo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ToDoActivity.class);
+                intent.putExtra("CurrentUser", currUser.username);
+                startActivity(intent);
+            }
+        });
+
         displayMates.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

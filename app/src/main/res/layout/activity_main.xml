@@ -47,11 +47,19 @@
                 android:text="Roommates" />
 
             <Button
+                android:id="@+id/todo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="To-Do" />
+
+            <Button
                 android:id="@+id/messaging"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Messaging" />
+
         </LinearLayout>
 
     </LinearLayout>
