@@ -10,10 +10,9 @@
         android:id="@+id/ReturnText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/ReturnButton"
-        android:layout_alignBottom="@+id/ReturnButton"
-        android:layout_alignEnd="@+id/RegisterButton"
-        android:layout_marginEnd="11dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/houseAddress"
+        android:layout_marginBottom="21dp"
         android:layout_weight="1"
         android:text="Already Registered?  "
         android:textColor="@android:color/holo_red_light"
@@ -74,9 +73,8 @@
         android:id="@+id/RegisterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/houseName"
+        android:layout_below="@+id/houseAddress"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="21dp"
         android:onClick="Return"
         android:text="Register" />
 
@@ -84,8 +82,8 @@
         android:id="@+id/ReturnButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/houseName"
-        android:layout_below="@+id/RegisterButton"
+        android:layout_alignBottom="@+id/ReturnText"
+        android:layout_alignEnd="@+id/houseAddress"
         android:layout_weight="1"
         android:background="@android:color/transparent"
         android:onClick="LoginReturn"
@@ -102,5 +100,16 @@
         android:layout_marginTop="15dp"
         android:ems="10"
         android:hint="HouseName"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/houseAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/PasswordRegister"
+        android:layout_below="@+id/houseName"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="HouseAddress"
         android:inputType="textPersonName" />
 </RelativeLayout>

@@ -14,7 +14,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class NewUserActivity extends Activity {
@@ -25,16 +26,18 @@ public class NewUserActivity extends Activity {
     EditText UsernameRegister;
     EditText PasswordRegister;
     EditText HouseNameRegister;
+    EditText HouseAddressRegister;
 
     static String NameStore;
     static String UsernameStore;
     static String PasswordStore;
     static String HouseNameStore;
+    static String HouseAddressStore;
 
-
+    static String ChoppedUser;
     //firebase
     FirebaseAuth mAuth;
-
+    DatabaseReference database;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,21 +46,31 @@ public class NewUserActivity extends Activity {
         UsernameRegister = (EditText) findViewById(R.id.UsernameRegister);
         PasswordRegister = (EditText) findViewById(R.id.PasswordRegister);
         HouseNameRegister = (EditText) findViewById(R.id.houseName);
+        HouseAddressRegister = (EditText) findViewById(R.id.houseAddress);
 
         mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance().getReference();
     }
 
     public void LoginReturn(View v){
         Intent intent = new Intent(this, SimpleLoginActivity.class);
         startActivity(intent);
     }
+    private void writeNewUser(){
 
+        User user = new User(NameStore,HouseNameStore,PasswordStore,HouseAddressStore);
+        database.child("UserData").child(ChoppedUser).setValue(user);
+
+    }
     public void Return(View v){
+
         this.NameStore = NameRegister.getText().toString();
         this.UsernameStore = UsernameRegister.getText().toString();
         this.PasswordStore = PasswordRegister.getText().toString();
         this.HouseNameStore = HouseNameRegister.getText().toString();
-        System.out.println(UsernameStore);
+        this.HouseAddressStore = HouseAddressRegister.getText().toString();
+        int index = UsernameStore.indexOf('@');
+        ChoppedUser = UsernameStore.substring(0,index);
 
         mAuth.createUserWithEmailAndPassword(UsernameStore, PasswordStore)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -67,6 +80,7 @@ public class NewUserActivity extends Activity {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(NewUserActivity.this, "Authentication succeed",
                                     Toast.LENGTH_SHORT).show();
+                            writeNewUser();
                             SuccessReturn();
 
                         } else {

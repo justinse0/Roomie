@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, MessageActivity.class);
-                intent.putExtra("CurrentUser", currUser.username);
+                //intent.putExtra("CurrentUser", currUser.username);
                 startActivity(intent);
             }
         });
@@ -95,7 +95,7 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ToDoActivity.class);
-                intent.putExtra("CurrentUser", currUser.username);
+               // intent.putExtra("CurrentUser", currUser.username);
                 startActivity(intent);
             }
         });

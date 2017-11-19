@@ -6,15 +6,17 @@ package cs121.ucsc.roomie;
 
 public class User {
     public String name;
-    public String username;
-    public String password;
     public String houseName;
+    public String password;
+    public String houseAddress;
+    public User(){
 
-    public User(String name, String username, String password, String houseName){
+    }
+    public User(String name, String houseName, String password, String houseAddress){
         this.name = name;
-        this.username = username;
-        this.password = password;
         this.houseName = houseName;
+        this.password = password;
+        this.houseAddress = houseAddress;
     }
 
 
