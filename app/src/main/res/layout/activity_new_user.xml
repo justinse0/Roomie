@@ -40,7 +40,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="Email"
         android:visibility="visible"
         tools:layout_editor_absoluteX="72dp"
         tools:layout_editor_absoluteY="101dp" />
@@ -67,6 +67,7 @@
         android:layout_below="@+id/UsernameRegister"
         android:layout_marginTop="13dp"
         android:ems="10"
+        android:hint="Password"
         android:inputType="textPassword" />
 
     <Button
@@ -100,6 +101,6 @@
         android:layout_below="@+id/PasswordRegister"
         android:layout_marginTop="15dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="House Name" />
+        android:hint="HouseName"
+        android:inputType="textPersonName" />
 </RelativeLayout>

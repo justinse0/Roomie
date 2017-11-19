@@ -37,9 +37,9 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/password"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="87dp"
+        android:layout_alignEnd="@+id/newaccount"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="44dp"
         android:text="Roomie"
         android:textColor="@android:color/holo_red_light"
         android:textSize="44sp" />

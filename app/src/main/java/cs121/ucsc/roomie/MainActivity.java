@@ -39,7 +39,7 @@ public class MainActivity extends Activity {
                 "Mindy Kaling"};
         //staticNames = new String[5];
         listView = new ListView(this);
-        roomies = SimpleLoginActivity.getUsers();
+       // roomies = SimpleLoginActivity.getUsers();
         userList = new ArrayList<String>();
         String username = getIntent().getStringExtra("CurrentUser");
         //initialize the connection to SendBird servers
@@ -52,7 +52,7 @@ public class MainActivity extends Activity {
          goTodo = (Button) findViewById(R.id.todo);
          messageStart = (Button) findViewById(R.id.messaging);
         secondPress = false;
-        for(int i=0; i<roomies.size();i++){
+       /* for(int i=0; i<roomies.size();i++){
             if(roomies.get(i).username.equals(username)){
                 currUser = roomies.get(i);
                 break;

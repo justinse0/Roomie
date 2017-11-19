@@ -1,29 +1,25 @@
 package cs121.ucsc.roomie;
 
 import android.app.Activity;
-import android.content.Context;
+
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
-import java.util.List;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 
 public class NewUserActivity extends Activity {
 
-    private static final String TAG ="DATA" ;
+
 
     EditText NameRegister;
     EditText UsernameRegister;
@@ -35,7 +31,10 @@ public class NewUserActivity extends Activity {
     static String PasswordStore;
     static String HouseNameStore;
 
-    static List<User> userList = new ArrayList<>();
+
+    //firebase
+    FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +44,7 @@ public class NewUserActivity extends Activity {
         PasswordRegister = (EditText) findViewById(R.id.PasswordRegister);
         HouseNameRegister = (EditText) findViewById(R.id.houseName);
 
-
-
+        mAuth = FirebaseAuth.getInstance();
     }
 
     public void LoginReturn(View v){
@@ -59,25 +57,34 @@ public class NewUserActivity extends Activity {
         this.UsernameStore = UsernameRegister.getText().toString();
         this.PasswordStore = PasswordRegister.getText().toString();
         this.HouseNameStore = HouseNameRegister.getText().toString();
+        System.out.println(UsernameStore);
+
+        mAuth.createUserWithEmailAndPassword(UsernameStore, PasswordStore)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Toast.makeText(NewUserActivity.this, "Authentication succeed",
+                                    Toast.LENGTH_SHORT).show();
+                            SuccessReturn();
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(NewUserActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
 
 
-        User u = new User(NameStore, UsernameStore, PasswordStore, HouseNameStore);
-        userList.add(u);
-        saveUserList(userList);
 
+    }
+    public void SuccessReturn(){
         Intent intent = new Intent(this, SimpleLoginActivity.class);
         startActivity(intent);
     }
-    public void saveUserList(List<User> u) {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = sharedPrefs.edit();
-        Gson gson = new Gson();
 
-        String json = gson.toJson(u);
 
-        editor.putString(TAG, json);
-
-        Toast.makeText(this,"stored!",Toast.LENGTH_LONG).show();
-        editor.commit();
-    }
 }

@@ -55,7 +55,7 @@ public class MessageActivity extends AppCompatActivity {
         listString = new String[0];
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
-        roomies = SimpleLoginActivity.getUsers();
+      //  roomies = SimpleLoginActivity.getUsers();
         final String username = getIntent().getStringExtra("CurrentUser");
 
         userList = new ArrayList<String>();
