@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="cs121.ucsc.roomie">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- READ/WRITE_EXTERNAL_STORAGE permissions are required to upload or download files from/into external storage. -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
-       <!-- android:theme="@style/AppTheme"-->
+
+        <!-- android:theme="@style/AppTheme" -->
 
         <activity android:name=".SimpleLoginActivity">
             <intent-filter>
@@ -24,8 +27,8 @@
         <activity android:name=".NewUserActivity" />
         <activity android:name=".MessageActivity" />
         <activity android:name=".ToDoActivity" />
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".BillSplitActivity"></activity>
     </application>
 
 </manifest>
