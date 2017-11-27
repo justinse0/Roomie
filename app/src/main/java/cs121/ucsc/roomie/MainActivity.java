@@ -43,7 +43,7 @@ public class MainActivity extends Activity {
         counter=0;
         listView = new ListView(this);
         houseUserList = new ArrayList<User>();
-        userPass = new String(getIntent().getStringExtra("CurrentUser"));
+        //userPass = new String(getIntent().getStringExtra("CurrentUser"));
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference();
@@ -58,7 +58,7 @@ public class MainActivity extends Activity {
         listView = (ListView) findViewById(R.id.roomieList);
         displayMates = (Button) findViewById(R.id.roomies);
         goTodo = (Button) findViewById(R.id.todo);
-        messageStart = (Button) findViewById(R.id.messaging);
+        //messageStart = (Button) findViewById(R.id.messaging);
         secondPress = false;
 
         database.child("UserData").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -109,28 +109,28 @@ public class MainActivity extends Activity {
 
     }
 
-    public void StartMessaging(View view){
-            Intent intent = new Intent(MainActivity.this, MessageActivity.class);
-            intent.putExtra("CurrentUser", userPass);
-            startActivity(intent);
-    }
+    //public void StartMessaging(View view){
+      //      Intent intent = new Intent(MainActivity.this, MessageActivity.class);
+        //    intent.putExtra("CurrentUser", userPass);
+          //  startActivity(intent);
+    //}
 
-    public void ShowRoomies(View view){
-        if(listView.getVisibility() == View.INVISIBLE){
-            listView.setVisibility(View.VISIBLE);
-        }else{
-            listView.setVisibility(View.INVISIBLE);
-        }
-        if(secondPress == false){
-            view.getBackground().setColorFilter(0xe0f47521, PorterDuff.Mode.SRC_ATOP);
-            view.invalidate();
-            secondPress = true;
-        }else if(secondPress == true){
-            view.getBackground().clearColorFilter();
-            view.invalidate();
-            secondPress = false;
-        }
-    }
+    //public void ShowRoomies(View view){
+      //if(listView.getVisibility() == View.INVISIBLE){
+        //listView.setVisibility(View.VISIBLE);
+        //}else{
+          //  listView.setVisibility(View.INVISIBLE);
+        //}
+        //if(secondPress == false){
+           // view.getBackground().setColorFilter(0xe0f47521, PorterDuff.Mode.SRC_ATOP);
+            //view.invalidate();
+            //secondPress = true;
+        //}else if(secondPress == true){
+            //view.getBackground().clearColorFilter();
+            //view.invalidate();
+            //secondPress = false;
+        //}
+    //}
 
 
 
