@@ -35,6 +35,7 @@ dependencies {
     compile 'com.google.firebase:firebase-database:11.4.2'
     compile 'com.android.support:appcompat-v7:26.+'
     testCompile 'junit:junit:4.12'
+    implementation files('libs/json-simple-1.1.1.jar')
 }
 
 apply plugin: 'com.google.gms.google-services'
