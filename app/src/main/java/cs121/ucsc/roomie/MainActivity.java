@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
     private final String APPID = new String("A21A2BDC-6192-4A27-A4A9-F3FEA23F2CFA");
     private ArrayList<String> roomies;
     private ListView listView;
-    private ArrayList<User> houseUserList;
+    static ArrayList<User> houseUserList;
     private static User currUser;
     private String userPass;
     private boolean secondPress;
@@ -83,6 +83,7 @@ public class MainActivity extends Activity {
                             if(!(user.name.equals(currUser.name)) && user.houseName.equals(currUser.houseName)){
                                 System.out.println(user.name);
                                 houseUserList.add(user);
+                                houseUserList.add(currUser);
                                 counter+=1;
                             }
                         }
