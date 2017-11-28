@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="cs121.ucsc.roomie.NewUserActivity">
+
+    <TextView
+        android:id="@+id/ReturnText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/houseAddress"
+        android:layout_marginBottom="21dp"
+        android:layout_weight="1"
+        android:text="Already Registered?  "
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/NameRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/UsernameRegister"
+        android:layout_below="@+id/RegisterTitle"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:hint="Name"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="101dp" />
+
+    <EditText
+        android:id="@+id/UsernameRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/NameRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="11dp"
+        android:ems="10"
+        android:hint="Email"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="72dp"
+        tools:layout_editor_absoluteY="101dp" />
+
+    <TextView
+        android:id="@+id/RegisterTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Register"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="44sp"
+        tools:layout_editor_absoluteX="105dp"
+        tools:layout_editor_absoluteY="75dp" />
+
+    <EditText
+        android:id="@+id/PasswordRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignStart="@+id/UsernameRegister"
+        android:layout_below="@+id/UsernameRegister"
+        android:layout_marginTop="13dp"
+        android:ems="10"
+        android:hint="Password"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/RegisterButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/houseAddress"
+        android:layout_centerHorizontal="true"
+        android:onClick="Return"
+        android:text="Register" />
+
+    <Button
+        android:id="@+id/ReturnButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/ReturnText"
+        android:layout_alignEnd="@+id/houseAddress"
+        android:layout_weight="1"
+        android:background="@android:color/transparent"
+        android:onClick="LoginReturn"
+        android:text="Click here!"
+        android:textAllCaps="false"
+        android:textColor="@android:color/holo_red_light" />
+
+    <EditText
+        android:id="@+id/houseName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/PasswordRegister"
+        android:layout_below="@+id/PasswordRegister"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="HouseName"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/houseAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/PasswordRegister"
+        android:layout_below="@+id/houseName"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="HouseAddress"
+        android:inputType="textPersonName" />
+</RelativeLayout>
