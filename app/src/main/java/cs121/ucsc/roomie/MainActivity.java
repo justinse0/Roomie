@@ -23,27 +23,32 @@ public class MainActivity extends Activity {
     private ArrayList<String> roomies;
     private ListView listView;
     private ArrayList<User> houseUserList;
-    private User currUser;
+    private static User currUser;
     private String userPass;
     private boolean secondPress;
     private String[] userArray;
     Button displayMates ;
     Button goTodo;
     Button messageStart;
+    Button splitBill;
     public static String[] staticNames;
     FirebaseAuth mAuth;
     DatabaseReference database;
     private int counter;
 
+    public User getUser(){
+        return currUser;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        roomies  = new ArrayList<String>();
+       // roomies  = new ArrayList<String>();
         counter=0;
         listView = new ListView(this);
         houseUserList = new ArrayList<User>();
-        //userPass = new String(getIntent().getStringExtra("CurrentUser"));
+        userPass = (getIntent().getStringExtra("UserPass"));
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference();
@@ -58,6 +63,7 @@ public class MainActivity extends Activity {
         listView = (ListView) findViewById(R.id.roomieList);
         displayMates = (Button) findViewById(R.id.roomies);
         goTodo = (Button) findViewById(R.id.todo);
+        splitBill = (Button) findViewById(R.id.billSplit);
         //messageStart = (Button) findViewById(R.id.messaging);
         secondPress = false;
 
@@ -66,7 +72,8 @@ public class MainActivity extends Activity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         for( DataSnapshot snapshot : dataSnapshot.getChildren()){
                             User user = snapshot.getValue(User.class);
-                            if((user.password.equals(userPass))){
+                            String x = user.password;
+                            if(x.equals(userPass)){
                               currUser = user;
                             }
                         }
@@ -87,21 +94,28 @@ public class MainActivity extends Activity {
                     }
                 });
 
-        for (int i=0; i<counter; i++){
-            roomies.add(houseUserList.get(i).name);
-        }
-        ArrayAdapter<String> listArrayAdapter = new ArrayAdapter<String>(MainActivity.this,
+      //  for (int i=0; i<counter; i++){
+      //      roomies.add(houseUserList.get(i).name);
+      //  }
+     /*   ArrayAdapter<String> listArrayAdapter = new ArrayAdapter<String>(MainActivity.this,
                 android.R.layout.simple_list_item_1, roomies);
         if(listArrayAdapter != null) {
            listView.setAdapter(listArrayAdapter);
         }
+*/
 
 
-
+        splitBill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent((MainActivity.this), BillSplitActivity.class);
+                startActivity(intent);
+            }
+        });
         goTodo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ToDoActivity.class);
+                 Intent intent = new Intent(MainActivity.this, ToDoActivity.class);
                // intent.putExtra("CurrentUser", currUser.userPass);
                 startActivity(intent);
             }

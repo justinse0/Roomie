@@ -7,61 +7,63 @@
     tools:context="cs121.ucsc.roomie.MainActivity">
 
     <LinearLayout
+        android:id="@+id/buttonView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/billSplit"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/split_bill" />
+
+        <Button
+            android:id="@+id/roomies"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/roommates" />
+
+        <Button
+            android:id="@+id/todo"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/to_do" />
+
+        <Button
+            android:id="@+id/messaging"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/messaging" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/listView"
+        <ListView
+            android:id="@+id/roomieList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="top"
-            android:orientation="vertical">
+            android:layout_height="0dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_weight="4"
+            android:visibility="invisible">
 
-            <ListView
-                android:id="@+id/roomieList"
-                android:layout_width="match_parent"
-                android:layout_height="242dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_weight="4"
-                android:visibility="invisible">
-
-            </ListView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/buttonView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:gravity="bottom"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/roomies"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Roommates" />
-
-            <Button
-                android:id="@+id/todo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="To-Do" />
-
-            <Button
-                android:id="@+id/messaging"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Messaging" />
-
-        </LinearLayout>
-
+        </ListView>
     </LinearLayout>
 
 </RelativeLayout>

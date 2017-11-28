@@ -2,4 +2,8 @@
     <string name="app_name">Roomie</string>
     <string name="Roommates">roomies</string>
     <string name="send">Send</string>
+    <string name="roommates">Roommates</string>
+    <string name="to_do">To-Do</string>
+    <string name="messaging">Messaging</string>
+    <string name="split_bill">Split Bill</string>
 </resources>
