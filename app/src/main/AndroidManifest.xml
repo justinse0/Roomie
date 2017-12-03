@@ -27,9 +27,10 @@
         <activity android:name=".NewUserActivity" />
         <activity android:name=".MessageActivity" />
         <activity android:name=".ToDoActivity" />
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".BillSplitActivity"></activity>
-        <activity android:name=".VenmoWebViewActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".BillSplitActivity" />
+        <activity android:name=".VenmoWebViewActivity" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>
