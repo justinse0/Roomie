@@ -30,7 +30,10 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".BillSplitActivity" />
         <activity android:name=".VenmoWebViewActivity" />
-        <activity android:name=".ProfileActivity"></activity>
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

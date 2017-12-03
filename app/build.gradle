@@ -25,6 +25,7 @@ repositories {
 
 }
 dependencies {
+    implementation 'com.android.support:design:26.1.0'
     compile 'com.sendbird.sdk:sendbird-android-sdk:3.0.42'
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {

@@ -10,15 +10,17 @@ public class User {
     public String password;
     public String houseAddress;
     public String VenmoID;
+    public String userEmail;
     public User(){
 
     }
-    public User(String name, String houseName, String password, String houseAddress, String VenmoID){
+    public User(String name, String houseName, String password, String houseAddress, String VenmoID, String userEmail){
         this.name = name;
         this.houseName = houseName;
         this.password = password;
         this.houseAddress = houseAddress;
         this.VenmoID = VenmoID;
+        this.userEmail = userEmail;
     }
 
 

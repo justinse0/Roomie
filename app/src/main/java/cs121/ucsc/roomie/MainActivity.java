@@ -31,12 +31,13 @@ public class MainActivity extends Activity {
     Button goTodo;
     Button messageStart;
     Button splitBill;
+    Button viewprof;
     public static String[] staticNames;
     FirebaseAuth mAuth;
     DatabaseReference database;
     private int counter;
 
-    public User getUser(){
+    public static User getUser(){
         return currUser;
     }
 
@@ -64,6 +65,7 @@ public class MainActivity extends Activity {
         displayMates = (Button) findViewById(R.id.roomies);
         goTodo = (Button) findViewById(R.id.todo);
         splitBill = (Button) findViewById(R.id.billSplit);
+        viewprof = (Button) findViewById(R.id.profile);
         //messageStart = (Button) findViewById(R.id.messaging);
         secondPress = false;
 
@@ -118,6 +120,14 @@ public class MainActivity extends Activity {
             public void onClick(View view) {
                  Intent intent = new Intent(MainActivity.this, ToDoActivity.class);
                // intent.putExtra("CurrentUser", currUser.userPass);
+                startActivity(intent);
+            }
+        });
+        viewprof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+
                 startActivity(intent);
             }
         });
