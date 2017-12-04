@@ -61,7 +61,9 @@ public class ProfileActivity extends AppCompatActivity
 
         menu = navigationView.getMenu();
         for(int i = 0; i<MainActivity.houseUserList.size(); i++){
-            menu.add(MainActivity.houseUserList.get(i).name);
+            if(!(MainActivity.houseUserList.get(i).equals(MainActivity.currUser))){
+                menu.add(MainActivity.houseUserList.get(i).name);
+            }
         }
 
         navigationView.setNavigationItemSelectedListener(this);
