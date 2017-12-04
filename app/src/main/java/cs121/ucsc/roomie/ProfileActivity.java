@@ -39,9 +39,9 @@ public class ProfileActivity extends AppCompatActivity
         //update current user header
         View hView = navigationView.getHeaderView(0);
         TextView nav_user = (TextView) hView.findViewById(R.id.headeremail);
-        nav_user.setText(MainActivity.getUser().userEmail);
+        nav_user.setText(MainActivity.currUser.userEmail);
         TextView nav_name = (TextView) hView.findViewById(R.id.headername);
-        nav_name.setText(MainActivity.getUser().name);
+        nav_name.setText(MainActivity.currUser.name);
         //
         navigationView.setNavigationItemSelectedListener(this);
     }

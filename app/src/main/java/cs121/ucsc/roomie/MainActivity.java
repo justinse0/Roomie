@@ -15,15 +15,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.sendbird.android.SendBird;
 
 import java.util.ArrayList;
 
+import cs121.ucsc.roomie.main.MessageLoginActivity;
+
 public class MainActivity extends Activity {
-    private final String APPID = new String("A21A2BDC-6192-4A27-A4A9-F3FEA23F2CFA");
+    public final String APPID = new String("A21A2BDC-6192-4A27-A4A9-F3FEA23F2CFA");
+    public static final String VERSION = "3.0.38";
     private ArrayList<String> roomies;
     private ListView listView;
     static ArrayList<User> houseUserList;
-    private static User currUser;
+    public static User currUser;
     private String userPass;
     private boolean secondPress;
     private String[] userArray;
@@ -31,13 +35,12 @@ public class MainActivity extends Activity {
     Button goTodo;
     Button messageStart;
     Button splitBill;
-    Button viewprof;
     public static String[] staticNames;
     FirebaseAuth mAuth;
     DatabaseReference database;
     private int counter;
 
-    public static User getUser(){
+    public User getUser(){
         return currUser;
     }
 
@@ -57,7 +60,7 @@ public class MainActivity extends Activity {
 
 
         //initialize the connection to SendBird servers
-       // SendBird.init(APPID, this);
+        SendBird.init(APPID, this);
 
         //create the list and buttons for displaying roommates
         //and find the current user
@@ -65,8 +68,7 @@ public class MainActivity extends Activity {
         displayMates = (Button) findViewById(R.id.roomies);
         goTodo = (Button) findViewById(R.id.todo);
         splitBill = (Button) findViewById(R.id.billSplit);
-        viewprof = (Button) findViewById(R.id.profile);
-        //messageStart = (Button) findViewById(R.id.messaging);
+        messageStart = (Button) findViewById(R.id.messaging);
         secondPress = false;
 
         database.child("UserData").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -123,22 +125,18 @@ public class MainActivity extends Activity {
                 startActivity(intent);
             }
         });
-        viewprof.setOnClickListener(new View.OnClickListener() {
+        messageStart.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MessageLoginActivity.class);
+                intent.putExtra("CurrentUser", userPass);
                 startActivity(intent);
             }
         });
 
     }
 
-    //public void StartMessaging(View view){
-      //      Intent intent = new Intent(MainActivity.this, MessageActivity.class);
-        //    intent.putExtra("CurrentUser", userPass);
-          //  startActivity(intent);
-    //}
+
 
     //public void ShowRoomies(View view){
       //if(listView.getVisibility() == View.INVISIBLE){
