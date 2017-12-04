@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
     private ArrayList<String> roomies;
     private ListView listView;
     static ArrayList<User> houseUserList;
-    private static User currUser;
+    public static User currUser;
     private String userPass;
     private boolean secondPress;
     private String[] userArray;
