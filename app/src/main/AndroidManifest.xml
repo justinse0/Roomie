@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:name="http://schemas.android.com/apk/res-auto"
     package="cs121.ucsc.roomie">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- READ/WRITE_EXTERNAL_STORAGE permissions are required to upload or download files from/into external storage. -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-sdk tools:overrideLibrary="com.stfalcon.multiimageview"/> <!-- min 16 -->
 
     <application
         android:allowBackup="true"
@@ -20,20 +24,87 @@
         <activity android:name=".SimpleLoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity android:name=".main.MessageLoginActivity">
+
+        </activity>
+        <activity android:name=".main.MessageActivity2"
+            android:label="@string/select_channel_type"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".main.SettingsActivity"
+            android:label="@string/settings" />
+        <activity
+            android:name=".main.BlockedMembersListActivity"
+            android:label="@string/blocked_members_list" />
+
+        <activity android:name=".utils.PhotoViewerActivity" />
+        <activity
+            android:name=".utils.MediaPlayerActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".openchannel.CreateOpenChannelActivity"
+            android:label="@string/create_open_channel" />
+        <activity
+            android:name=".groupchannel.InviteMemberActivity"
+            android:label="@string/invite_member" />
+        <activity
+            android:name=".groupchannel.MemberListActivity"
+            android:label="@string/member_list" />
+        <activity
+            android:name=".groupchannel.CreateGroupChannelActivity"
+            android:label="@string/create_group_channel" />
+        <activity
+            android:name=".openchannel.ParticipantListActivity"
+            android:label="@string/participant_list" />
+        <activity android:name=".openchannel.OpenChannelActivity" />
+        <activity android:name=".groupchannel.GroupChannelActivity" />
+
         <activity android:name=".NewUserActivity" />
         <activity android:name=".MessageActivity" />
         <activity android:name=".ToDoActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".BillSplitActivity" />
-        <activity android:name=".VenmoWebViewActivity" />
-        <activity
-            android:name=".ProfileActivity"
-            android:label="@string/title_activity_profile"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".BillSplitActivity"></activity>
+        <activity android:name=".VenmoWebViewActivity"></activity>
+
+        <!--Firebase messaging service-->
+<!--
+        <service android:name=".fcm.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".fcm.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+        -->
+        <service android:name=".fcm.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service android:name=".fcm.MyFirebaseInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".RoomieMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+        <service
+            android:name=".RoomieInstanceIDService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

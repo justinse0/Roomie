@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,8 +21,10 @@
                 android:id="@+id/toolbar_main"
                 android:layout_width="match_parent"
                 android:theme="@style/Toolbar"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="wrap_content"
+                android:minHeight="?attr/actionBarSize"
                 app:popupTheme="@style/Theme.AppCompat.Light">
+                <!--app:theme="@style/ThemeOverlay.AppCompat.ActionBar"-->
 
             </android.support.v7.widget.Toolbar>
 
@@ -52,7 +53,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Group Channels"
+                    android:text="@string/group_channels"
                     android:layout_gravity="center_vertical"
                     android:textColor="#000000"
                     android:textSize="16sp"/>
@@ -77,15 +78,15 @@
                     android:background="@drawable/open_icon_40_dp"
                     android:layout_marginLeft="19.5dp"
                     android:layout_marginRight="14dp"
-                    android:layout_gravity="center_vertical"/>
+                    android:layout_gravity="center_vertical" android:contentDescription="@string/todo" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Open Channels"
                     android:layout_gravity="center_vertical"
+                    android:text="@string/open_channels"
                     android:textColor="#000000"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
             </LinearLayout>
 

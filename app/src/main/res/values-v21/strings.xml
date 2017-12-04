@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="group_channels">Group Channels</string>
+    <string name="open_channels">Open Channels</string>
+</resources>

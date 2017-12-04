@@ -23,7 +23,7 @@ import cs121.ucsc.roomie.utils.PushUtils;
 
 public class MessageLoginActivity extends AppCompatActivity {
 
-    private User currUser;
+    private cs121.ucsc.roomie.User currUser;
     private CoordinatorLayout mLoginLayout;
     private TextInputEditText mUserIdConnectEditText, mUserNicknameEditText;
     private Button mConnectButton;
@@ -36,7 +36,7 @@ public class MessageLoginActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_login);
         //get current Roomie user;
-        currUser = MainActivity.getUser();
+        currUser = MainActivity.currUser;
 
         mLoginLayout = (CoordinatorLayout) findViewById(R.id.layout_login);
 

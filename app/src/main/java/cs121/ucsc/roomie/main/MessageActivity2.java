@@ -23,7 +23,7 @@ public class MessageActivity2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.message_activity2);
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         setSupportActionBar(mToolbar);
