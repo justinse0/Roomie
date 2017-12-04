@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.utils;
+package cs121.ucsc.roomie.utils;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;

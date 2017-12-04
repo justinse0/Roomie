@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.main;
+package cs121.ucsc.roomie.main;
 
 import android.Manifest;
 import android.app.Activity;
@@ -41,12 +41,12 @@ import android.widget.Toast;
 
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
-import com.sendbird.android.sample.R;
-import com.sendbird.android.sample.utils.DateUtils;
-import com.sendbird.android.sample.utils.FileUtils;
-import com.sendbird.android.sample.utils.ImageUtils;
-import com.sendbird.android.sample.utils.PreferenceUtils;
-import com.sendbird.android.sample.utils.PushUtils;
+import cs121.ucsc.roomie.R;
+import cs121.ucsc.roomie.utils.DateUtils;
+import cs121.ucsc.roomie.utils.FileUtils;
+import cs121.ucsc.roomie.utils.ImageUtils;
+import cs121.ucsc.roomie.utils.PreferenceUtils;
+import cs121.ucsc.roomie.utils.PushUtils;
 
 import java.io.File;
 import java.util.Calendar;

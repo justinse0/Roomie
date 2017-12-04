@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.openchannel;
+package cs121.ucsc.roomie.openchannel;
 
 
 import android.content.Context;
@@ -17,10 +17,10 @@ import com.sendbird.android.FileMessage;
 import com.sendbird.android.SendBird;
 import com.sendbird.android.User;
 import com.sendbird.android.UserMessage;
-import com.sendbird.android.sample.R;
-import com.sendbird.android.sample.utils.DateUtils;
-import com.sendbird.android.sample.utils.FileUtils;
-import com.sendbird.android.sample.utils.ImageUtils;
+import cs121.ucsc.roomie.R;
+import cs121.ucsc.roomie.utils.DateUtils;
+import cs121.ucsc.roomie.utils.FileUtils;
+import cs121.ucsc.roomie.utils.ImageUtils;
 
 import java.util.ArrayList;
 import java.util.List;

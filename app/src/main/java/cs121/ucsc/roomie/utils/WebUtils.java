@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.utils;
+package cs121.ucsc.roomie.utils;
 
 import android.os.AsyncTask;
 import android.util.Patterns;

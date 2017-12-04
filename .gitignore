@@ -1,6 +1,6 @@
 *.iml
 .gradle/
-
+_windows
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/.name
@@ -13,7 +13,13 @@
 .idea/vcs.xml
 local.properties
 .idea/workspace.xml
-
+color.scheme.xml
+debugger.xml
+editor.xml
+github_settings.xml
+notification.xml
+ui.lnf.xml
+vcs.xml
 .DS_Store
 /build
 /captures

@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.openchannel;
+package cs121.ucsc.roomie.openchannel;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sendbird.android.OpenChannel;
-import com.sendbird.android.sample.R;
+import cs121.ucsc.roomie.R;
 
 import java.util.ArrayList;
 import java.util.List;

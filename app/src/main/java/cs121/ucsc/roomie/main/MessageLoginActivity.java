@@ -15,12 +15,15 @@ import android.widget.Toast;
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 import com.sendbird.android.User;
-import com.sendbird.android.sample.R;
-import com.sendbird.android.sample.utils.PreferenceUtils;
-import com.sendbird.android.sample.utils.PushUtils;
 
-public class LoginActivity extends AppCompatActivity {
+import cs121.ucsc.roomie.MainActivity;
+import cs121.ucsc.roomie.R;
+import cs121.ucsc.roomie.utils.PreferenceUtils;
+import cs121.ucsc.roomie.utils.PushUtils;
 
+public class MessageLoginActivity extends AppCompatActivity {
+
+    private User currUser;
     private CoordinatorLayout mLoginLayout;
     private TextInputEditText mUserIdConnectEditText, mUserNicknameEditText;
     private Button mConnectButton;
@@ -32,6 +35,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
+        //get current Roomie user;
+        currUser = MainActivity.getUser();
 
         mLoginLayout = (CoordinatorLayout) findViewById(R.id.layout_login);
 
@@ -51,8 +56,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 String userNickname = mUserNicknameEditText.getText().toString();
 
-                PreferenceUtils.setUserId(LoginActivity.this, userId);
-                PreferenceUtils.setNickname(LoginActivity.this, userNickname);
+                PreferenceUtils.setUserId(MessageLoginActivity.this, userId);
+                PreferenceUtils.setNickname(MessageLoginActivity.this, userNickname);
 
                 connectToSendBird(userId, userNickname);
 
@@ -95,27 +100,27 @@ public class LoginActivity extends AppCompatActivity {
                 if (e != null) {
                     // Error!
                     Toast.makeText(
-                            LoginActivity.this, "" + e.getCode() + ": " + e.getMessage(),
+                            MessageLoginActivity.this, "" + e.getCode() + ": " + e.getMessage(),
                             Toast.LENGTH_SHORT)
                             .show();
 
                     // Show login failure snackbar
                     showSnackbar("Login to SendBird failed");
                     mConnectButton.setEnabled(true);
-                    PreferenceUtils.setConnected(LoginActivity.this, false);
+                    PreferenceUtils.setConnected(MessageLoginActivity.this, false);
                     return;
                 }
 
-                PreferenceUtils.setNickname(LoginActivity.this, user.getNickname());
-                PreferenceUtils.setProfileUrl(LoginActivity.this, user.getProfileUrl());
-                PreferenceUtils.setConnected(LoginActivity.this, true);
+                PreferenceUtils.setNickname(MessageLoginActivity.this, user.getNickname());
+                PreferenceUtils.setProfileUrl(MessageLoginActivity.this, user.getProfileUrl());
+                PreferenceUtils.setConnected(MessageLoginActivity.this, true);
 
                 // Update the user's nickname
                 updateCurrentUserInfo(userNickname);
                 updateCurrentUserPushToken();
 
                 // Proceed to MessageActivity2
-                Intent intent = new Intent(LoginActivity.this, MessageActivity2.class);
+                Intent intent = new Intent(MessageLoginActivity.this, MessageActivity2.class);
                 startActivity(intent);
                 finish();
             }
@@ -126,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
      * Update the user's push token.
      */
     private void updateCurrentUserPushToken() {
-        PushUtils.registerPushTokenForCurrentUser(LoginActivity.this, null);
+        PushUtils.registerPushTokenForCurrentUser(MessageLoginActivity.this, null);
     }
 
     /**
@@ -140,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (e != null) {
                     // Error!
                     Toast.makeText(
-                            LoginActivity.this, "" + e.getCode() + ":" + e.getMessage(),
+                            MessageLoginActivity.this, "" + e.getCode() + ":" + e.getMessage(),
                             Toast.LENGTH_SHORT)
                             .show();
 
@@ -150,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                PreferenceUtils.setNickname(LoginActivity.this, userNickname);
+                PreferenceUtils.setNickname(MessageLoginActivity.this, userNickname);
             }
         });
     }

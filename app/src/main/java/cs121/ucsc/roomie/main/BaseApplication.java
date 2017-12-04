@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.main;
+package cs121.ucsc.roomie.main;
 
 
 import android.app.Application;

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.sendbird.android.sample.utils;
+package cs121.ucsc.roomie.utils;
 
 import android.app.Activity;
 import android.content.res.Configuration;
@@ -31,7 +31,7 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ProgressBar;
 
-import com.sendbird.android.sample.R;
+import cs121.ucsc.roomie.R;
 
 public class MediaPlayerActivity extends Activity implements
         OnBufferingUpdateListener, OnCompletionListener,

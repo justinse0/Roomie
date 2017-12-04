@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.groupchannel;
+package cs121.ucsc.roomie.groupchannel;
 
 import android.Manifest;
 import android.app.Activity;
@@ -46,14 +46,14 @@ import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 import com.sendbird.android.User;
 import com.sendbird.android.UserMessage;
-import com.sendbird.android.sample.R;
-import com.sendbird.android.sample.utils.FileUtils;
-import com.sendbird.android.sample.utils.MediaPlayerActivity;
-import com.sendbird.android.sample.utils.PhotoViewerActivity;
-import com.sendbird.android.sample.utils.PreferenceUtils;
-import com.sendbird.android.sample.utils.TextUtils;
-import com.sendbird.android.sample.utils.UrlPreviewInfo;
-import com.sendbird.android.sample.utils.WebUtils;
+import cs121.ucsc.roomie.R;
+import cs121.ucsc.roomie.utils.FileUtils;
+import cs121.ucsc.roomie.utils.MediaPlayerActivity;
+import cs121.ucsc.roomie.utils.PhotoViewerActivity;
+import cs121.ucsc.roomie.utils.PreferenceUtils;
+import cs121.ucsc.roomie.utils.TextUtils;
+import cs121.ucsc.roomie.utils.UrlPreviewInfo;
+import cs121.ucsc.roomie.utils.WebUtils;
 
 import org.json.JSONException;
 

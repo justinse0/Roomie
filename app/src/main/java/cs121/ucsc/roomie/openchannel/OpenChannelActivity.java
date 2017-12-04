@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.openchannel;
+package cs121.ucsc.roomie.openchannel;
 
 
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.sendbird.android.sample.R;
+import cs121.ucsc.roomie.R;
 
-public class OpenChannelActivity extends AppCompatActivity{
+public class OpenChannelActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

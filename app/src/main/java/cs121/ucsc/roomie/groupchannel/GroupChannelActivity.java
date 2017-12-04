@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.groupchannel;
+package cs121.ucsc.roomie.groupchannel;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,10 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import com.sendbird.android.sample.R;
+import cs121.ucsc.roomie.R;
 
 
-public class GroupChannelActivity extends AppCompatActivity{
+public class GroupChannelActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

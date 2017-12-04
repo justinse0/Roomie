@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.groupchannel;
+package cs121.ucsc.roomie.groupchannel;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -13,9 +13,9 @@ import android.widget.TextView;
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 import com.sendbird.android.User;
-import com.sendbird.android.sample.R;
-import com.sendbird.android.sample.main.BlockedMembersListActivity;
-import com.sendbird.android.sample.utils.ImageUtils;
+import cs121.ucsc.roomie.R;
+import cs121.ucsc.roomie.main.BlockedMembersListActivity;
+import cs121.ucsc.roomie.utils.ImageUtils;
 
 import java.util.ArrayList;
 import java.util.List;

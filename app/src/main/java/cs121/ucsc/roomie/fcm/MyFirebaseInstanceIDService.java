@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sendbird.android.sample.fcm;
+package cs121.ucsc.roomie.fcm;
 
 import android.util.Log;
 import android.widget.Toast;

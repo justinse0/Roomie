@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.openchannel;
+package cs121.ucsc.roomie.openchannel;
 
 import android.Manifest;
 import android.app.Activity;
@@ -42,10 +42,10 @@ import com.sendbird.android.PreviousMessageListQuery;
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 import com.sendbird.android.UserMessage;
-import com.sendbird.android.sample.R;
-import com.sendbird.android.sample.utils.FileUtils;
-import com.sendbird.android.sample.utils.MediaPlayerActivity;
-import com.sendbird.android.sample.utils.PhotoViewerActivity;
+import cs121.ucsc.roomie.R;
+import cs121.ucsc.roomie.utils.FileUtils;
+import cs121.ucsc.roomie.utils.MediaPlayerActivity;
+import cs121.ucsc.roomie.utils.PhotoViewerActivity;
 
 import java.io.File;
 import java.util.ArrayList;

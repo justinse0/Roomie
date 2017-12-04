@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.utils;
+package cs121.ucsc.roomie.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;

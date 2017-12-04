@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.groupchannel;
+package cs121.ucsc.roomie.groupchannel;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,12 +12,12 @@ import android.view.MenuItem;
 import com.sendbird.android.GroupChannel;
 import com.sendbird.android.Member;
 import com.sendbird.android.SendBirdException;
-import com.sendbird.android.sample.R;
+import cs121.ucsc.roomie.R;
 
 import java.util.List;
 
 
-public class MemberListActivity extends AppCompatActivity{
+public class MemberListActivity extends AppCompatActivity {
 
     private UserListAdapter mListAdapter;
     private RecyclerView mRecyclerView;

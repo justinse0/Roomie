@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.sendbird.android.sample.fcm;
+package cs121.ucsc.roomie.fcm;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -28,9 +28,9 @@ import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
-import com.sendbird.android.sample.R;
-import com.sendbird.android.sample.groupchannel.GroupChannelActivity;
-import com.sendbird.android.sample.utils.PreferenceUtils;
+import cs121.ucsc.roomie.R;
+import cs121.ucsc.roomie.groupchannel.GroupChannelActivity;
+import cs121.ucsc.roomie.utils.PreferenceUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;

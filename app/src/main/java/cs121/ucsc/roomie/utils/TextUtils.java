@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.utils;
+package cs121.ucsc.roomie.utils;
 
 import com.sendbird.android.GroupChannel;
 import com.sendbird.android.Member;

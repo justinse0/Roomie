@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.openchannel;
+package cs121.ucsc.roomie.openchannel;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -15,7 +15,7 @@ import android.widget.Button;
 
 import com.sendbird.android.OpenChannel;
 import com.sendbird.android.SendBirdException;
-import com.sendbird.android.sample.R;
+import cs121.ucsc.roomie.R;
 
 /**
  * Allows a user to create an Open Channel.

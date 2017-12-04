@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.groupchannel;
+package cs121.ucsc.roomie.groupchannel;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -27,11 +27,11 @@ import com.sendbird.android.GroupChannel;
 import com.sendbird.android.Member;
 import com.sendbird.android.SendBird;
 import com.sendbird.android.UserMessage;
-import com.sendbird.android.sample.R;
-import com.sendbird.android.sample.utils.DateUtils;
-import com.sendbird.android.sample.utils.FileUtils;
-import com.sendbird.android.sample.utils.TextUtils;
-import com.sendbird.android.sample.utils.TypingIndicator;
+import cs121.ucsc.roomie.R;
+import cs121.ucsc.roomie.utils.DateUtils;
+import cs121.ucsc.roomie.utils.FileUtils;
+import cs121.ucsc.roomie.utils.TextUtils;
+import cs121.ucsc.roomie.utils.TypingIndicator;
 import com.stfalcon.multiimageview.MultiImageView;
 
 import java.io.File;
@@ -94,7 +94,7 @@ class GroupChannelListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
             File dataFile = new File(appDir, TextUtils.generateMD5(SendBird.getCurrentUser().getUserId() + "channel_list") + ".data");
 
             String content = FileUtils.loadFromFile(dataFile);
-            String [] dataArray = content.split("\n");
+            String[] dataArray = content.split("\n");
 
             // Reset channel list, then add cached data.
             mChannelList.clear();

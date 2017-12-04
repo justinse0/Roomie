@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.groupchannel;
+package cs121.ucsc.roomie.groupchannel;
 
 import android.content.Context;
 import android.net.Uri;
@@ -20,12 +20,12 @@ import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 import com.sendbird.android.User;
 import com.sendbird.android.UserMessage;
-import com.sendbird.android.sample.R;
-import com.sendbird.android.sample.utils.DateUtils;
-import com.sendbird.android.sample.utils.FileUtils;
-import com.sendbird.android.sample.utils.ImageUtils;
-import com.sendbird.android.sample.utils.TextUtils;
-import com.sendbird.android.sample.utils.UrlPreviewInfo;
+import cs121.ucsc.roomie.R;
+import cs121.ucsc.roomie.utils.DateUtils;
+import cs121.ucsc.roomie.utils.FileUtils;
+import cs121.ucsc.roomie.utils.ImageUtils;
+import cs121.ucsc.roomie.utils.TextUtils;
+import cs121.ucsc.roomie.utils.UrlPreviewInfo;
 
 import org.json.JSONException;
 
@@ -95,7 +95,7 @@ class GroupChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             File dataFile = new File(appDir, TextUtils.generateMD5(SendBird.getCurrentUser().getUserId() + channelUrl) + ".data");
 
             String content = FileUtils.loadFromFile(dataFile);
-            String [] dataArray = content.split("\n");
+            String[] dataArray = content.split("\n");
 
             mChannel = (GroupChannel) GroupChannel.buildFromSerializedData(Base64.decode(dataArray[0], Base64.DEFAULT | Base64.NO_WRAP));
 

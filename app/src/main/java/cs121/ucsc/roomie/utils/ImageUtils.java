@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.utils;
+package cs121.ucsc.roomie.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -80,7 +80,7 @@ public class ImageUtils {
     }
 
     public static void displayRoundImageFromUrlWithoutCache(final Context context, final String url,
-                                           final ImageView imageView, RequestListener listener) {
+                                                            final ImageView imageView, RequestListener listener) {
         RequestOptions myOptions = new RequestOptions()
                 .centerCrop()
                 .dontAnimate()

@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.groupchannel;
+package cs121.ucsc.roomie.groupchannel;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -23,7 +23,7 @@ import com.sendbird.android.GroupChannel;
 import com.sendbird.android.GroupChannelListQuery;
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
-import com.sendbird.android.sample.R;
+import cs121.ucsc.roomie.R;
 
 import java.util.List;
 

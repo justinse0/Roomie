@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.groupchannel;
+package cs121.ucsc.roomie.groupchannel;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,13 +9,13 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 
-import com.sendbird.android.sample.R;
+import cs121.ucsc.roomie.R;
 
 
 /**
  * A fragment displaying an option to set the channel as Distinct.
  */
-public class SelectDistinctFragment extends Fragment{
+public class SelectDistinctFragment extends Fragment {
 
     private CheckBox mCheckBox;
     private DistinctSelectedListener mListener;

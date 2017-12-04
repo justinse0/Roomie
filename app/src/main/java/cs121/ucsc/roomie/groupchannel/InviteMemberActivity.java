@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.groupchannel;
+package cs121.ucsc.roomie.groupchannel;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,7 +16,7 @@ import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 import com.sendbird.android.User;
 import com.sendbird.android.UserListQuery;
-import com.sendbird.android.sample.R;
+import cs121.ucsc.roomie.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.List;
  * current channel.
  */
 
-public class InviteMemberActivity extends AppCompatActivity{
+public class InviteMemberActivity extends AppCompatActivity {
 
     private LinearLayoutManager mLayoutManager;
     private RecyclerView mRecyclerView;

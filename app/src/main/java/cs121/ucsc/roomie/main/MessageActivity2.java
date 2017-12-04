@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.main;
+package cs121.ucsc.roomie.main;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,12 @@ import android.widget.TextView;
 
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
-import com.sendbird.android.sample.R;
-import com.sendbird.android.sample.groupchannel.GroupChannelActivity;
-import com.sendbird.android.sample.openchannel.OpenChannelActivity;
-import com.sendbird.android.sample.utils.PreferenceUtils;
+import cs121.ucsc.roomie.R;
+import cs121.ucsc.roomie.groupchannel.GroupChannelActivity;
+import cs121.ucsc.roomie.openchannel.OpenChannelActivity;
+import cs121.ucsc.roomie.utils.PreferenceUtils;
 
-public class MainActivity extends AppCompatActivity {
+public class MessageActivity2 extends AppCompatActivity {
 
     private Toolbar mToolbar;
 
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.linear_layout_group_channels).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, GroupChannelActivity.class);
+                Intent intent = new Intent(MessageActivity2.this, GroupChannelActivity.class);
                 startActivity(intent);
             }
         });
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.linear_layout_open_channels).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, OpenChannelActivity.class);
+                Intent intent = new Intent(MessageActivity2.this, OpenChannelActivity.class);
                 startActivity(intent);
             }
         });
@@ -72,14 +72,14 @@ public class MainActivity extends AppCompatActivity {
 
                     // Don't return because we still need to disconnect.
                 } else {
-//                    Toast.makeText(MainActivity.this, "All push tokens unregistered.", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(MessageActivity2.this, "All push tokens unregistered.", Toast.LENGTH_SHORT).show();
                 }
 
                 SendBird.disconnect(new SendBird.DisconnectHandler() {
                     @Override
                     public void onDisconnected() {
-                        PreferenceUtils.setConnected(MainActivity.this, false);
-                        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                        PreferenceUtils.setConnected(MessageActivity2.this, false);
+                        Intent intent = new Intent(getApplicationContext(), MessageLoginActivity.class);
                         startActivity(intent);
                         finish();
                     }
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_main:
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                Intent intent = new Intent(MessageActivity2.this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
         }

@@ -1,4 +1,4 @@
-package com.sendbird.android.sample.openchannel;
+package cs121.ucsc.roomie.openchannel;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,8 +13,8 @@ import com.sendbird.android.OpenChannel;
 import com.sendbird.android.SendBirdException;
 import com.sendbird.android.User;
 import com.sendbird.android.UserListQuery;
-import com.sendbird.android.sample.R;
-import com.sendbird.android.sample.groupchannel.UserListAdapter;
+import cs121.ucsc.roomie.R;
+import cs121.ucsc.roomie.groupchannel.UserListAdapter;
 
 import java.util.List;
 
