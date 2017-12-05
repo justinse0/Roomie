@@ -3,6 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.2"
+    //
+    dataBinding.enabled=true
     defaultConfig {
         applicationId "cs121.ucsc.roomie"
         minSdkVersion 19
