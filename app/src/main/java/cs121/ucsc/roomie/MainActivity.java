@@ -157,26 +157,17 @@ public class MainActivity extends Activity {
         messageStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MessageLoginActivity.class);
-                intent.putExtra("CurrentUser", userPass);
-                startActivity(intent);
+                SendBirdConnect();
+               // Intent intent = new Intent(MainActivity.this, MessageActivity2.class);
+              //  intent.putExtra("CurrentUser", userPass);
+               // startActivity(intent);
             }
         });
 
     }
 
 
-    public void SendBirdConnect(){
-        String userId = currUser.name;
-        //replace  spaces in username
-        userId = userId.replaceAll("\\s", "");
-        String userNickname = userId;
 
-        PreferenceUtils.setUserId(MainActivity.this, userId);
-        PreferenceUtils.setNickname(MainActivity.this, userNickname);
-
-        connectToSendBird(userId, userNickname);
-    }
 
     //public void ShowRoomies(View view){
       //if(listView.getVisibility() == View.INVISIBLE){
@@ -196,8 +187,22 @@ public class MainActivity extends Activity {
     //}
 
 
+/*******************************************************************************************
+ * SendBird  imported functions
+ */
 
 
+    public void SendBirdConnect(){
+        String userId = currUser.name;
+        //replace  spaces in username
+        userId = userId.replaceAll("\\s", "");
+        String userNickname = userId;
+
+        PreferenceUtils.setUserId(MainActivity.this, userId);
+        PreferenceUtils.setNickname(MainActivity.this, userNickname);
+
+        connectToSendBird(userId, userNickname);
+    }
     /**
      * Attempts to connect a user to SendBird.
      * @param userId    The unique ID of the user.
@@ -217,14 +222,14 @@ public class MainActivity extends Activity {
                 if (e != null) {
                     // Error!
                     Toast.makeText(
-                            MessageLoginActivity.this, "" + e.getCode() + ": " + e.getMessage(),
+                            MainActivity.this, "" + e.getCode() + ": " + e.getMessage(),
                             Toast.LENGTH_SHORT)
                             .show();
 
                     // Show login failure snackbar
                     showSnackbar("Login to SendBird failed");
                     mConnectButton.setEnabled(true);
-                    PreferenceUtils.setConnected(MessageLoginActivity.this, false);
+                    PreferenceUtils.setConnected(MainActivity.this, false);
                     return;
                 }
 
@@ -237,12 +242,13 @@ public class MainActivity extends Activity {
                 updateCurrentUserPushToken();
 
                 // Proceed to MessageActivity2
-                Intent intent = new Intent(MessageLoginActivity.this, MessageActivity2.class);
+                Intent intent = new Intent(MainActivity.this, MessageActivity2.class);
                 startActivity(intent);
-                finish();
+                //finish();
             }
         });
     }
+
     // Shows or hides the ProgressBar
     private void showProgressBar(boolean show) {
         if (show) {
@@ -251,6 +257,7 @@ public class MainActivity extends Activity {
             mProgressBar.hide();
         }
     }
+
     // Displays a Snackbar from the bottom of the screen
     private void showSnackbar(String text) {
         Snackbar snackbar = Snackbar.make(mLoginLayout, text, Snackbar.LENGTH_SHORT);
@@ -269,7 +276,7 @@ public class MainActivity extends Activity {
                 if (e != null) {
                     // Error!
                     Toast.makeText(
-                            MessageLoginActivity.this, "" + e.getCode() + ":" + e.getMessage(),
+                            MainActivity.this, "" + e.getCode() + ":" + e.getMessage(),
                             Toast.LENGTH_SHORT)
                             .show();
 
@@ -279,9 +286,18 @@ public class MainActivity extends Activity {
                     return;
                 }
 
-                PreferenceUtils.setNickname(MessageLoginActivity.this, userNickname);
+                PreferenceUtils.setNickname(MainActivity.this, userNickname);
             }
         });
     }
 
+    /**
+     * Update the user's push token.
+     */
+    private void updateCurrentUserPushToken() {
+        PushUtils.registerPushTokenForCurrentUser(MainActivity.this, null);
+    }
+/**
+*end Sendbird Functions
+ *****************************************************************************************/
 }
