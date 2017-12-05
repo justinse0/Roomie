@@ -2,6 +2,7 @@ package cs121.ucsc.roomie.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -10,17 +11,29 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.sendbird.android.GroupChannel;
+import com.sendbird.android.GroupChannelListQuery;
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.ListIterator;
+
 import cs121.ucsc.roomie.MainActivity;
 import cs121.ucsc.roomie.R;
+import cs121.ucsc.roomie.User;
 import cs121.ucsc.roomie.groupchannel.GroupChannelActivity;
 import cs121.ucsc.roomie.openchannel.OpenChannelActivity;
 import cs121.ucsc.roomie.utils.PreferenceUtils;
 
 public class MessageActivity2 extends AppCompatActivity {
 
+    private ArrayList<User> houseUserList;
+    private List<String> channelUserList;
     private Toolbar mToolbar;
 
     @Override
@@ -60,6 +73,13 @@ Log.d("MessageActivity2", "passed setContentView");
         String sdkVersion = String.format(getResources().getString(R.string.all_app_version),
                 BaseApplication.VERSION, SendBird.getSDKVersion());
         ((TextView) findViewById(R.id.text_main_versions)).setText(sdkVersion);
+
+        houseUserList = MainActivity.houseUserList;
+        channelUserList = new LinkedList<>();
+        for(int i=0; i < houseUserList.size(); i++){
+            channelUserList.add(houseUserList.get(i).name);
+        }
+        GroupChannelListQuery houseChannel = getHouseChannel(channelUserList);
     }
 
     /**
@@ -108,5 +128,20 @@ Log.d("MessageActivity2", "passed setContentView");
                 return true;
         }
         return false;
+    }
+
+    private GroupChannelListQuery getHouseChannel(List<String> list){
+        GroupChannelListQuery channelListQuery = GroupChannel.createMyGroupChannelListQuery();
+        channelListQuery.setUserIdsIncludeFilter(list,  GroupChannelListQuery.QueryType.AND);
+        channelListQuery.next(new GroupChannelListQuery.GroupChannelListQueryResultHandler() {
+            @Override
+            public void onResult(List<GroupChannel> list, SendBirdException e) {
+                if (e!= null){
+                    Log.d("MessageActivity2", "error retrieving house channel");
+                    return;
+                }
+            }
+        });
+        return channelListQuery;
     }
 }
