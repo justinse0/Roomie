@@ -58,7 +58,7 @@ public class NewUserActivity extends Activity {
     }
     private void writeNewUser(){
 
-        User user = new User(NameStore,HouseNameStore,PasswordStore,HouseAddressStore,"");
+        User user = new User(NameStore,HouseNameStore,PasswordStore,HouseAddressStore,0,UsernameStore);
         database.child("UserData").child(ChoppedUser).setValue(user);
 
     }
