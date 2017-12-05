@@ -1,19 +1,16 @@
 package cs121.ucsc.roomie;
 
 import android.os.Bundle;
-
-import android.view.Menu;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
-
 
 
 public class ProfileActivity extends AppCompatActivity
@@ -61,13 +58,13 @@ public class ProfileActivity extends AppCompatActivity
         //update current user header
         View hView = navigationView.getHeaderView(0);
         TextView nav_user = (TextView) hView.findViewById(R.id.headeremail);
-        nav_user.setText(MainActivity.currUser.userEmail);
+        nav_user.setText(MainActivity.getUser().userEmail);
         TextView nav_name = (TextView) hView.findViewById(R.id.headername);
-        nav_name.setText(MainActivity.currUser.name);
+        nav_name.setText(MainActivity.getUser().name);
         //
 
         menu = navigationView.getMenu();
-        for(int i = 0; i<MainActivity.houseUserList.size(); i++){
+        for(int i = 0; i< MainActivity.houseUserList.size(); i++){
             menu.add(MainActivity.houseUserList.get(i).name);
 
         }
@@ -96,7 +93,7 @@ public class ProfileActivity extends AppCompatActivity
 
         String name = item.toString();
 
-        for(int i = 0; i<MainActivity.houseUserList.size(); i++){
+        for(int i = 0; i< MainActivity.houseUserList.size(); i++){
             if(name.equals(MainActivity.houseUserList.get(i).name)){
                 tv1.setText(MainActivity.houseUserList.get(i).name);
                 tv2.setText(MainActivity.houseUserList.get(i).userEmail);

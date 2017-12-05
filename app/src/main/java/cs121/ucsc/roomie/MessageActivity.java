@@ -1,16 +1,13 @@
 package cs121.ucsc.roomie;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -62,8 +59,8 @@ public class MessageActivity extends AppCompatActivity {
         final Button sendButton = (Button) findViewById(R.id.sendButton);
         final EditText message = (EditText) findViewById(R.id.messageText);
         messageItems = new ArrayList<String>();
-       // listView = (ListView) findViewById(R.id.ListView);
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(MessageActivity.this, android.R.layout.simple_expandable_list_item_1, userList);
+        listView = (ListView) findViewById(R.id.ListView);
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(cs121.ucsc.roomie.MessageActivity.this, android.R.layout.simple_expandable_list_item_1, userList);
         listView.setAdapter(listAdapter);
 
         //this.PopulateList( x, listString);
@@ -74,7 +71,7 @@ public class MessageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 //open output file
-    //            Intent intent = new Intent(MessageActivity.this, MessageActivity2.class);
+    //            Intent intent = new Intent(MessageActivity.this, MainActivity.class);
                 try {
                     File file = getFileStreamPath("messageFile.txt");
                     if(!file.exists()){
@@ -126,7 +123,7 @@ public class MessageActivity extends AppCompatActivity {
                 strArray[i] = messageItems.get(i);
             }
             messageFile.close();
-            ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(MessageActivity.this, android.R.layout.simple_expandable_list_item_1, listString);
+            ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(cs121.ucsc.roomie.MessageActivity.this, android.R.layout.simple_expandable_list_item_1, listString);
             listView.setAdapter(listAdapter);
 
         }catch(Exception e){

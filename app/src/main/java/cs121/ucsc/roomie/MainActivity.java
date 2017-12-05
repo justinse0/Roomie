@@ -1,13 +1,14 @@
 package cs121.ucsc.roomie;
-import android.app.Activity;
-import android.graphics.PorterDuff;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -16,40 +17,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sendbird.android.SendBird;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
-import android.support.v4.widget.ContentLoadingProgressBar;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 
+import java.util.ArrayList;
 
-import cs121.ucsc.roomie.MainActivity;
-import cs121.ucsc.roomie.R;
 import cs121.ucsc.roomie.main.MessageActivity2;
 import cs121.ucsc.roomie.utils.PreferenceUtils;
 import cs121.ucsc.roomie.utils.PushUtils;
 
-import java.util.ArrayList;
-
-import cs121.ucsc.roomie.main.MessageLoginActivity;
-
 public class MainActivity extends Activity {
-    public final String APPID = new String("A21A2BDC-6192-4A27-A4A9-F3FEA23F2CFA");
+    private final String APPID = new String("A21A2BDC-6192-4A27-A4A9-F3FEA23F2CFA");
     public static final String VERSION = "3.0.38";
     private ArrayList<String> roomies;
     private ListView listView;
     static ArrayList<User> houseUserList;
-    public static cs121.ucsc.roomie.User currUser;
+    public static User currUser;
     private String userPass;
     private boolean secondPress;
     private String[] userArray;
@@ -57,19 +39,14 @@ public class MainActivity extends Activity {
     Button goTodo;
     Button messageStart;
     Button splitBill;
+    Button viewprof;
     public static String[] staticNames;
     FirebaseAuth mAuth;
     DatabaseReference database;
     private int counter;
-
-    //transferred from sendbird login
-    private CoordinatorLayout mLoginLayout;
-    private TextInputEditText mUserIdConnectEditText, mUserNicknameEditText;
-    private Button mConnectButton;
     private ContentLoadingProgressBar mProgressBar;
 
-
-    public User getUser(){
+    public static User getUser(){
         return currUser;
     }
 
@@ -97,8 +74,13 @@ public class MainActivity extends Activity {
         displayMates = (Button) findViewById(R.id.roomies);
         goTodo = (Button) findViewById(R.id.todo);
         splitBill = (Button) findViewById(R.id.billSplit);
+        viewprof = (Button) findViewById(R.id.profile);
         messageStart = (Button) findViewById(R.id.messaging);
         secondPress = false;
+
+        // A loading indicator
+        mProgressBar = (ContentLoadingProgressBar) findViewById(R.id.progress_bar_login);
+
 
         database.child("UserData").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -142,15 +124,23 @@ public class MainActivity extends Activity {
         splitBill.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent((MainActivity.this), BillSplitActivity.class);
+                Intent intent = new Intent((cs121.ucsc.roomie.MainActivity.this), BillSplitActivity.class);
                 startActivity(intent);
             }
         });
         goTodo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 Intent intent = new Intent(MainActivity.this, ToDoActivity.class);
+                 Intent intent = new Intent(cs121.ucsc.roomie.MainActivity.this, ToDoActivity.class);
                // intent.putExtra("CurrentUser", currUser.userPass);
+                startActivity(intent);
+            }
+        });
+        viewprof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(cs121.ucsc.roomie.MainActivity.this, ProfileActivity.class);
+
                 startActivity(intent);
             }
         });
@@ -158,16 +148,18 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 SendBirdConnect();
-               // Intent intent = new Intent(MainActivity.this, MessageActivity2.class);
-              //  intent.putExtra("CurrentUser", userPass);
-               // startActivity(intent);
+                // Intent intent = new Intent(MainActivity.this, MessageActivity2.class);
+                //  intent.putExtra("CurrentUser", userPass);
+                // startActivity(intent);
             }
         });
-
     }
 
-
-
+    //public void StartMessaging(View view){
+      //      Intent intent = new Intent(MainActivity.this, MessageActivity.class);
+        //    intent.putExtra("CurrentUser", userPass);
+          //  startActivity(intent);
+    //}
 
     //public void ShowRoomies(View view){
       //if(listView.getVisibility() == View.INVISIBLE){
@@ -186,10 +178,9 @@ public class MainActivity extends Activity {
         //}
     //}
 
-
-/*******************************************************************************************
- * SendBird  imported functions
- */
+    /*******************************************************************************************
+     * SendBird  imported functions
+     */
 
 
     public void SendBirdConnect(){
@@ -198,8 +189,8 @@ public class MainActivity extends Activity {
         userId = userId.replaceAll("\\s", "");
         String userNickname = userId;
 
-        PreferenceUtils.setUserId(MainActivity.this, userId);
-        PreferenceUtils.setNickname(MainActivity.this, userNickname);
+        PreferenceUtils.setUserId(cs121.ucsc.roomie.MainActivity.this, userId);
+        PreferenceUtils.setNickname(cs121.ucsc.roomie.MainActivity.this, userNickname);
 
         connectToSendBird(userId, userNickname);
     }
@@ -211,7 +202,6 @@ public class MainActivity extends Activity {
     private void connectToSendBird(final String userId, final String userNickname) {
         // Show the loading indicator
         showProgressBar(true);
-        mConnectButton.setEnabled(false);
 
         SendBird.connect(userId, new SendBird.ConnectHandler() {
             @Override
@@ -222,27 +212,27 @@ public class MainActivity extends Activity {
                 if (e != null) {
                     // Error!
                     Toast.makeText(
-                            MainActivity.this, "" + e.getCode() + ": " + e.getMessage(),
+                            cs121.ucsc.roomie.MainActivity.this, "" + e.getCode() + ": " + e.getMessage(),
                             Toast.LENGTH_SHORT)
                             .show();
 
                     // Show login failure snackbar
-                    showSnackbar("Login to SendBird failed");
-                    mConnectButton.setEnabled(true);
-                    PreferenceUtils.setConnected(MainActivity.this, false);
+                    Toast.makeText(MainActivity.this, "Login to SendBird failed", Toast.LENGTH_LONG);
+
+                    PreferenceUtils.setConnected(cs121.ucsc.roomie.MainActivity.this, false);
                     return;
                 }
 
-                PreferenceUtils.setNickname(MainActivity.this, user.getNickname());
-                PreferenceUtils.setProfileUrl(MainActivity.this, user.getProfileUrl());
-                PreferenceUtils.setConnected(MainActivity.this, true);
+                PreferenceUtils.setNickname(cs121.ucsc.roomie.MainActivity.this, user.getNickname());
+                PreferenceUtils.setProfileUrl(cs121.ucsc.roomie.MainActivity.this, user.getProfileUrl());
+                PreferenceUtils.setConnected(cs121.ucsc.roomie.MainActivity.this, true);
 
                 // Update the user's nickname
                 updateCurrentUserInfo(userNickname);
                 updateCurrentUserPushToken();
 
                 // Proceed to MessageActivity2
-                Intent intent = new Intent(MainActivity.this, MessageActivity2.class);
+                Intent intent = new Intent(cs121.ucsc.roomie.MainActivity.this, MessageActivity2.class);
                 startActivity(intent);
                 //finish();
             }
@@ -251,19 +241,14 @@ public class MainActivity extends Activity {
 
     // Shows or hides the ProgressBar
     private void showProgressBar(boolean show) {
-        if (show) {
+        /*if (show) {
             mProgressBar.show();
         } else {
             mProgressBar.hide();
-        }
+        }*/
     }
 
-    // Displays a Snackbar from the bottom of the screen
-    private void showSnackbar(String text) {
-        Snackbar snackbar = Snackbar.make(mLoginLayout, text, Snackbar.LENGTH_SHORT);
 
-        snackbar.show();
-    }
 
     /**
      * Updates the user's nickname.
@@ -276,17 +261,17 @@ public class MainActivity extends Activity {
                 if (e != null) {
                     // Error!
                     Toast.makeText(
-                            MainActivity.this, "" + e.getCode() + ":" + e.getMessage(),
+                            cs121.ucsc.roomie.MainActivity.this, "" + e.getCode() + ":" + e.getMessage(),
                             Toast.LENGTH_SHORT)
                             .show();
 
                     // Show update failed snackbar
-                    showSnackbar("Update user nickname failed");
+                    Toast.makeText(MainActivity.this, "Update user nickname failed", Toast.LENGTH_LONG);
 
                     return;
                 }
 
-                PreferenceUtils.setNickname(MainActivity.this, userNickname);
+                PreferenceUtils.setNickname(cs121.ucsc.roomie.MainActivity.this, userNickname);
             }
         });
     }
@@ -295,9 +280,15 @@ public class MainActivity extends Activity {
      * Update the user's push token.
      */
     private void updateCurrentUserPushToken() {
-        PushUtils.registerPushTokenForCurrentUser(MainActivity.this, null);
+        PushUtils.registerPushTokenForCurrentUser(cs121.ucsc.roomie.MainActivity.this, null);
     }
 /**
-*end Sendbird Functions
+ *end Sendbird Functions
  *****************************************************************************************/
+
+
+
+
+
+
 }

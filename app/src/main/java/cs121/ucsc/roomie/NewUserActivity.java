@@ -1,9 +1,7 @@
 package cs121.ucsc.roomie;
 
 import android.app.Activity;
-
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -58,7 +56,7 @@ public class NewUserActivity extends Activity {
     }
     private void writeNewUser(){
 
-        User user = new User(NameStore,HouseNameStore,PasswordStore,HouseAddressStore,0,UsernameStore);
+        cs121.ucsc.roomie.User user = new User(NameStore,HouseNameStore,PasswordStore,HouseAddressStore,0,UsernameStore);
         database.child("UserData").child(ChoppedUser).setValue(user);
 
     }
@@ -78,14 +76,14 @@ public class NewUserActivity extends Activity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(NewUserActivity.this, "Authentication succeed",
+                            Toast.makeText(cs121.ucsc.roomie.NewUserActivity.this, "Authentication succeed",
                                     Toast.LENGTH_SHORT).show();
                             writeNewUser();
                             SuccessReturn();
 
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(NewUserActivity.this, "Authentication failed.",
+                            Toast.makeText(cs121.ucsc.roomie.NewUserActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
 
                         }
