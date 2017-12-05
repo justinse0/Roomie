@@ -2,6 +2,7 @@ package cs121.ucsc.roomie.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,8 +17,11 @@ import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 import cs121.ucsc.roomie.MainActivity;
 import cs121.ucsc.roomie.R;
@@ -28,7 +32,7 @@ import cs121.ucsc.roomie.utils.PreferenceUtils;
 
 public class MessageActivity2 extends AppCompatActivity {
 
-    public ArrayList<User> houseUserList;
+    private ArrayList<User> houseUserList;
     private List<String> channelUserList;
     private Toolbar mToolbar;
 

@@ -30,7 +30,7 @@ public class MainActivity extends Activity {
     public static final String VERSION = "3.0.38";
     private ArrayList<String> roomies;
     private ListView listView;
-    public static ArrayList<User> houseUserList;
+    static ArrayList<User> houseUserList;
     public static User currUser;
     private String userPass;
     private boolean secondPress;
