@@ -2,6 +2,7 @@ package cs121.ucsc.roomie;
 
 import android.os.Bundle;
 
+import android.view.Menu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,6 +20,11 @@ public class ProfileActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 
+    Menu menu;
+    TextView tv1;
+    TextView tv2;
+    TextView tv3;
+    TextView tv4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +40,16 @@ public class ProfileActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
+        //textview
+        tv1 = (TextView)findViewById(R.id.dym_name);
+        tv1.setText(MainActivity.currUser.name);
+        tv2 = (TextView)findViewById(R.id.dym_email);
+        tv2.setText(MainActivity.currUser.userEmail);
+        tv3 = (TextView)findViewById(R.id.dym_housename);
+        tv3.setText(MainActivity.currUser.houseName);
+        tv4 = (TextView)findViewById(R.id.dym_address);
+        tv4.setText(MainActivity.currUser.houseAddress);
+        //
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         //update current user header
         View hView = navigationView.getHeaderView(0);
@@ -43,6 +58,13 @@ public class ProfileActivity extends AppCompatActivity
         TextView nav_name = (TextView) hView.findViewById(R.id.headername);
         nav_name.setText(MainActivity.currUser.name);
         //
+
+        menu = navigationView.getMenu();
+        for(int i = 0; i<MainActivity.houseUserList.size(); i++){
+            menu.add(MainActivity.houseUserList.get(i).name);
+
+        }
+
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -58,28 +80,22 @@ public class ProfileActivity extends AppCompatActivity
 
 
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
 
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        int id = item.getItemId();
 
+        String name = item.toString();
 
-        if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        for(int i = 0; i<MainActivity.houseUserList.size(); i++){
+            if(name.equals(MainActivity.houseUserList.get(i).name)){
+                tv1.setText(MainActivity.houseUserList.get(i).name);
+                tv2.setText(MainActivity.houseUserList.get(i).userEmail);
+                tv3.setText(MainActivity.houseUserList.get(i).houseName);
+                tv4.setText(MainActivity.houseUserList.get(i).houseAddress);
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

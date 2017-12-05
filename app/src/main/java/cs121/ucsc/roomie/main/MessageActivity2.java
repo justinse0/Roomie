@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.view.menu.ActionMenuItemView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,9 +26,10 @@ public class MessageActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_activity2);
-
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
-        setSupportActionBar(mToolbar);
+Log.d("MessageActivity2", "passed setContentView");
+ //       mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
+        Log.d("MessageActivity2", "passed findViewById");
+  //      setSupportActionBar(mToolbar);
 
         findViewById(R.id.linear_layout_group_channels).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +93,8 @@ public class MessageActivity2 extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 

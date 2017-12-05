@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginVertical="100dp">
+
+    <TextView
+        android:id="@+id/filler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#FFFFFF"
+        android:textSize="50dp"
+        android:text=" "
+        />
+    <TextView
+        android:id="@+id/static_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000FFF"
+        android:layout_below="@id/filler"
+        android:textSize="24dp"
+        android:text="Name: "
+        />
+    <TextView
+        android:id="@+id/static_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/static_name"
+        android:textColor="#000FFF"
+        android:textSize="24dp"
+        android:text="Email: "/>
+    <TextView
+        android:id="@+id/static_housename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/static_email"
+        android:textColor="#000FFF"
+        android:textSize="24dp"
+        android:text="House Name: " />
+    <TextView
+        android:id="@+id/static_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/static_housename"
+        android:textColor="#000FFF"
+        android:textSize="24dp"
+        android:text="Address: " />
+
+
+    <TextView
+        android:id="@+id/dym_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/dym_email"
+        android:layout_toEndOf="@+id/static_name"
+        android:text="Name: "
+        android:textColor="#000FFF"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/dym_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/static_address"
+        android:layout_alignBottom="@+id/static_address"
+        android:layout_toEndOf="@+id/static_address"
+        android:text="Address: "
+        android:textColor="#000FFF"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/dym_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/static_housename"
+        android:layout_toEndOf="@+id/static_email"
+        android:text="Email: "
+        android:textColor="#000FFF"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/dym_housename"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/static_housename"
+        android:layout_alignBottom="@+id/static_housename"
+        android:layout_toEndOf="@+id/static_housename"
+        android:text="House Name: "
+        android:textColor="#000FFF"
+        android:textSize="24dp" />
+</RelativeLayout>
