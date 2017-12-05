@@ -16,10 +16,12 @@ public class BillSplitActivity extends AppCompatActivity {
     }
 
     public void RequestGo(View v){
-        startActivity(new Intent(BillSplitActivity.this, RequestActivity.class));
+        Intent intent = new Intent(this, RequestActivity.class);
+        startActivity(intent);
     }
 
     public void PayGo(View v){
-        startActivity(new Intent(BillSplitActivity.this, PayActivity.class));
+        Intent intent = new Intent(this, PayActivity.class);
+        startActivity(intent);
     }
 }
