@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
+
+import cs121.ucsc.roomie.MainActivity;
 import cs121.ucsc.roomie.R;
 import cs121.ucsc.roomie.groupchannel.GroupChannelActivity;
 import cs121.ucsc.roomie.openchannel.OpenChannelActivity;
@@ -82,7 +84,7 @@ Log.d("MessageActivity2", "passed setContentView");
                     @Override
                     public void onDisconnected() {
                         PreferenceUtils.setConnected(MessageActivity2.this, false);
-                        Intent intent = new Intent(getApplicationContext(), MessageLoginActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                         finish();
                     }

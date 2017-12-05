@@ -86,8 +86,8 @@ public class CreateGroupChannelActivity extends AppCompatActivity
         });
         mCreateButton.setEnabled(false);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_create_group_channel);
-        setSupportActionBar(mToolbar);
+       // mToolbar = (Toolbar) findViewById(R.id.toolbar_create_group_channel);
+       // setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_left_white_24_dp);

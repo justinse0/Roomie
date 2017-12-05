@@ -13,6 +13,6 @@ public class BaseApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        SendBird.init(APP_ID, getApplicationContext());
+       // SendBird.init(APP_ID, getApplicationContext());
     }
 }

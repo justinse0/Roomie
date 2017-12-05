@@ -67,8 +67,8 @@ public class InviteMemberActivity extends AppCompatActivity {
             }
         });
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_invite_member);
-        setSupportActionBar(mToolbar);
+       // mToolbar = (Toolbar) findViewById(R.id.toolbar_invite_member);
+        //setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_left_white_24_dp);

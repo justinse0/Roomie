@@ -65,8 +65,8 @@ public class BlockedMembersListActivity extends AppCompatActivity {
         });
         mButtonUnblock.setEnabled(false);
 
-        mToolbar = (Toolbar) findViewById(R.id.toolbar_blocked_members_list);
-        setSupportActionBar(mToolbar);
+        //mToolbar = (Toolbar) findViewById(R.id.toolbar_blocked_members_list);
+        //setSupportActionBar(mToolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_left_white_24_dp);

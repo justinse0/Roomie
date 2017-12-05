@@ -17,6 +17,28 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.sendbird.android.SendBird;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputEditText;
+import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.sendbird.android.SendBird;
+import com.sendbird.android.SendBirdException;
+
+
+import cs121.ucsc.roomie.MainActivity;
+import cs121.ucsc.roomie.R;
+import cs121.ucsc.roomie.main.MessageActivity2;
+import cs121.ucsc.roomie.utils.PreferenceUtils;
+import cs121.ucsc.roomie.utils.PushUtils;
+
 import java.util.ArrayList;
 
 import cs121.ucsc.roomie.main.MessageLoginActivity;
@@ -27,7 +49,7 @@ public class MainActivity extends Activity {
     private ArrayList<String> roomies;
     private ListView listView;
     static ArrayList<User> houseUserList;
-    public static User currUser;
+    public static cs121.ucsc.roomie.User currUser;
     private String userPass;
     private boolean secondPress;
     private String[] userArray;
@@ -39,6 +61,13 @@ public class MainActivity extends Activity {
     FirebaseAuth mAuth;
     DatabaseReference database;
     private int counter;
+
+    //transferred from sendbird login
+    private CoordinatorLayout mLoginLayout;
+    private TextInputEditText mUserIdConnectEditText, mUserNicknameEditText;
+    private Button mConnectButton;
+    private ContentLoadingProgressBar mProgressBar;
+
 
     public User getUser(){
         return currUser;
@@ -137,6 +166,17 @@ public class MainActivity extends Activity {
     }
 
 
+    public void SendBirdConnect(){
+        String userId = currUser.name;
+        //replace  spaces in username
+        userId = userId.replaceAll("\\s", "");
+        String userNickname = userId;
+
+        PreferenceUtils.setUserId(MainActivity.this, userId);
+        PreferenceUtils.setNickname(MainActivity.this, userNickname);
+
+        connectToSendBird(userId, userNickname);
+    }
 
     //public void ShowRoomies(View view){
       //if(listView.getVisibility() == View.INVISIBLE){
@@ -158,7 +198,90 @@ public class MainActivity extends Activity {
 
 
 
+    /**
+     * Attempts to connect a user to SendBird.
+     * @param userId    The unique ID of the user.
+     * @param userNickname  The user's nickname, which will be displayed in chats.
+     */
+    private void connectToSendBird(final String userId, final String userNickname) {
+        // Show the loading indicator
+        showProgressBar(true);
+        mConnectButton.setEnabled(false);
 
+        SendBird.connect(userId, new SendBird.ConnectHandler() {
+            @Override
+            public void onConnected(com.sendbird.android.User user, SendBirdException e) {
+                // Callback received; hide the progress bar.
+                showProgressBar(false);
 
+                if (e != null) {
+                    // Error!
+                    Toast.makeText(
+                            MessageLoginActivity.this, "" + e.getCode() + ": " + e.getMessage(),
+                            Toast.LENGTH_SHORT)
+                            .show();
+
+                    // Show login failure snackbar
+                    showSnackbar("Login to SendBird failed");
+                    mConnectButton.setEnabled(true);
+                    PreferenceUtils.setConnected(MessageLoginActivity.this, false);
+                    return;
+                }
+
+                PreferenceUtils.setNickname(MainActivity.this, user.getNickname());
+                PreferenceUtils.setProfileUrl(MainActivity.this, user.getProfileUrl());
+                PreferenceUtils.setConnected(MainActivity.this, true);
+
+                // Update the user's nickname
+                updateCurrentUserInfo(userNickname);
+                updateCurrentUserPushToken();
+
+                // Proceed to MessageActivity2
+                Intent intent = new Intent(MessageLoginActivity.this, MessageActivity2.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+    // Shows or hides the ProgressBar
+    private void showProgressBar(boolean show) {
+        if (show) {
+            mProgressBar.show();
+        } else {
+            mProgressBar.hide();
+        }
+    }
+    // Displays a Snackbar from the bottom of the screen
+    private void showSnackbar(String text) {
+        Snackbar snackbar = Snackbar.make(mLoginLayout, text, Snackbar.LENGTH_SHORT);
+
+        snackbar.show();
+    }
+
+    /**
+     * Updates the user's nickname.
+     * @param userNickname  The new nickname of the user.
+     */
+    private void updateCurrentUserInfo(final String userNickname) {
+        SendBird.updateCurrentUserInfo(userNickname, null, new SendBird.UserInfoUpdateHandler() {
+            @Override
+            public void onUpdated(SendBirdException e) {
+                if (e != null) {
+                    // Error!
+                    Toast.makeText(
+                            MessageLoginActivity.this, "" + e.getCode() + ":" + e.getMessage(),
+                            Toast.LENGTH_SHORT)
+                            .show();
+
+                    // Show update failed snackbar
+                    showSnackbar("Update user nickname failed");
+
+                    return;
+                }
+
+                PreferenceUtils.setNickname(MessageLoginActivity.this, userNickname);
+            }
+        });
+    }
 
 }
