@@ -1,6 +1,6 @@
 *.iml
 .gradle/
-
+.idea/libraries
 .idea/workspace.xml
 .idea/tasks.xml
 .idea/.name
