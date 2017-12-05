@@ -1,7 +1,9 @@
 package cs121.ucsc.roomie;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import cs121.ucsc.roomie.R;
 
 public class ToDoActivity extends AppCompatActivity {
 

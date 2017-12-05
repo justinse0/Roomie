@@ -1,22 +1,13 @@
 package cs121.ucsc.roomie;
 
 import android.content.Context;
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
-
-import com.sendbird.android.BaseChannel;
-import com.sendbird.android.OpenChannel;
-import com.sendbird.android.SendBird;
-import com.sendbird.android.SendBirdException;
-import com.sendbird.android.UserListQuery;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -69,7 +60,7 @@ public class MessageActivity extends AppCompatActivity {
         final EditText message = (EditText) findViewById(R.id.messageText);
         messageItems = new ArrayList<String>();
         listView = (ListView) findViewById(R.id.ListView);
-        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(MessageActivity.this, android.R.layout.simple_expandable_list_item_1, userList);
+        ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(cs121.ucsc.roomie.MessageActivity.this, android.R.layout.simple_expandable_list_item_1, userList);
         listView.setAdapter(listAdapter);
 
         //this.PopulateList( x, listString);
@@ -132,7 +123,7 @@ public class MessageActivity extends AppCompatActivity {
                 strArray[i] = messageItems.get(i);
             }
             messageFile.close();
-            ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(MessageActivity.this, android.R.layout.simple_expandable_list_item_1, listString);
+            ArrayAdapter<String> listAdapter = new ArrayAdapter<String>(cs121.ucsc.roomie.MessageActivity.this, android.R.layout.simple_expandable_list_item_1, listString);
             listView.setAdapter(listAdapter);
 
         }catch(Exception e){
