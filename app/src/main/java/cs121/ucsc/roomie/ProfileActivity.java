@@ -103,6 +103,12 @@ public class ProfileActivity extends AppCompatActivity
                 tv3.setText(MainActivity.houseUserList.get(i).houseName);
                 tv4.setText(MainActivity.houseUserList.get(i).houseAddress);
             }
+            if(MainActivity.houseUserList.get(i).busy == 1){
+                tv5.setText("Busy");
+            }
+            else{
+                tv5.setText("No, not Busy");
+            }
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
