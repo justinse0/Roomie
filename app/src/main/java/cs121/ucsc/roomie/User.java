@@ -9,17 +9,17 @@ public class User {
     public String houseName;
     public String password;
     public String houseAddress;
-    public String VenmoID;
+    public int busy;
     public String userEmail;
     public User(){
 
     }
-    public User(String name, String houseName, String password, String houseAddress, String VenmoID, String userEmail){
+    public User(String name, String houseName, String password, String houseAddress, int busy, String userEmail){
         this.name = name;
         this.houseName = houseName;
         this.password = password;
         this.houseAddress = houseAddress;
-        this.VenmoID = VenmoID;
+        this.busy = busy;
         this.userEmail = userEmail;
     }
 

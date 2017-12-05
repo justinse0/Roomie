@@ -25,6 +25,7 @@ public class ProfileActivity extends AppCompatActivity
     TextView tv2;
     TextView tv3;
     TextView tv4;
+    TextView tv5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +50,12 @@ public class ProfileActivity extends AppCompatActivity
         tv3.setText(MainActivity.currUser.houseName);
         tv4 = (TextView)findViewById(R.id.dym_address);
         tv4.setText(MainActivity.currUser.houseAddress);
+        tv5 = (TextView)findViewById(R.id.dym_busy);
+        if(MainActivity.currUser.busy == 1){
+            tv5.setText("Yes, busy");
+        }else{
+            tv5.setText("No, not busy");
+        }
         //
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         //update current user header

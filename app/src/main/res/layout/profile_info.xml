@@ -45,6 +45,15 @@
         android:textColor="#000FFF"
         android:textSize="24dp"
         android:text="Address: " />
+    <TextView
+        android:id="@+id/static_busy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#000FFF"
+        android:layout_below="@id/static_address"
+        android:textSize="24dp"
+        android:text="Busy? "
+        />
 
 
     <TextView
@@ -86,6 +95,18 @@
         android:layout_alignBottom="@+id/static_housename"
         android:layout_toEndOf="@+id/static_housename"
         android:text="House Name: "
+        android:textColor="#000FFF"
+        android:textSize="24dp" />
+
+    <TextView
+        android:id="@+id/dym_busy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/static_busy"
+        android:layout_alignBottom="@+id/static_busy"
+        android:layout_toEndOf="@+id/static_busy"
+        android:layout_marginEnd="15dp"
+        android:text="Busy? "
         android:textColor="#000FFF"
         android:textSize="24dp" />
 </RelativeLayout>
