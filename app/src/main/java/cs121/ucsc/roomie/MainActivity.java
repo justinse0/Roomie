@@ -25,6 +25,10 @@ import cs121.ucsc.roomie.main.MessageActivity2;
 import cs121.ucsc.roomie.utils.PreferenceUtils;
 import cs121.ucsc.roomie.utils.PushUtils;
 
+import static cs121.ucsc.roomie.NewUserActivity.HouseNameStore;
+import static cs121.ucsc.roomie.NewUserActivity.NameStore;
+import static cs121.ucsc.roomie.NewUserActivity.PasswordStore;
+
 public class MainActivity extends Activity {
     private final String APPID = new String("A21A2BDC-6192-4A27-A4A9-F3FEA23F2CFA");
     public static final String VERSION = "3.0.38";
@@ -153,6 +157,13 @@ public class MainActivity extends Activity {
                 // startActivity(intent);
             }
         });
+    }
+
+    //DO NOT DISTURB BUTTON
+    public void Busy(View v){
+        //User.busy=1;
+        //cs121.ucsc.roomie.User user = new User(User.name,User.houseAddress,User.houseName,User.msgURL,User.busy,User.password,User.userEmail);
+        //database.child("UserData").child(NewUserActivity.ChoppedUser).setValue(user);
     }
 
     //public void StartMessaging(View view){
