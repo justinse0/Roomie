@@ -56,7 +56,7 @@ public class NewUserActivity extends Activity {
     }
     private void writeNewUser(){
 
-        cs121.ucsc.roomie.User user = new User(NameStore,HouseNameStore,PasswordStore,HouseAddressStore,0,UsernameStore, null);
+        cs121.ucsc.roomie.User user = new User(NameStore,HouseNameStore,PasswordStore,HouseAddressStore,0,UsernameStore, "");
         database.child("UserData").child(ChoppedUser).setValue(user);
 
     }
