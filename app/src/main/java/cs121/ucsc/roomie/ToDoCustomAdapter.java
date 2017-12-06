@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.load.model.Model;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
@@ -21,9 +24,13 @@ import java.util.ArrayList;
 public class ToDoCustomAdapter extends BaseAdapter {
     Context context;
     ArrayList<ToDoModel> itemModelList;
+    FirebaseAuth mAuth;
+    DatabaseReference database;
     public ToDoCustomAdapter(Context context, ArrayList<ToDoModel> modelList) {
         this.context = context;
         this.itemModelList = modelList;
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
@@ -54,6 +61,7 @@ public class ToDoCustomAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     itemModelList.remove(position);
+                    database.child("ToDoData").child(MainActivity.currUser.houseName).setValue(itemModelList);
                     notifyDataSetChanged();
                 }
             });

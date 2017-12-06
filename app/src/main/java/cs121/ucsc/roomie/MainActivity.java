@@ -102,7 +102,6 @@ public class MainActivity extends Activity {
                             if(!(user.name.equals(currUser.name)) && user.houseName.equals(currUser.houseName)){
                                 System.out.println(user.name);
                                 houseUserList.add(user);
-                                houseUserList.add(currUser);
                                 counter+=1;
                             }
                         }
