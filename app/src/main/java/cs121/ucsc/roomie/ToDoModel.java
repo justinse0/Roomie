@@ -5,7 +5,10 @@ package cs121.ucsc.roomie;
  */
 
 public class ToDoModel {
-    String name;
+    public String name;
+    public ToDoModel(){
+
+    }
     public ToDoModel(String name) {
         this.name = name;
     }
