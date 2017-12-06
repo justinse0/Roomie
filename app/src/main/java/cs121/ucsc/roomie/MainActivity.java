@@ -49,6 +49,9 @@ public class MainActivity extends Activity {
     FirebaseAuth mAuth;
     DatabaseReference database;
     private int counter;
+    static int indexChop;
+    static String userChop;
+    static int alternate = 1;
     private ContentLoadingProgressBar mProgressBar;
 
     public static User getUser(){
@@ -94,7 +97,15 @@ public class MainActivity extends Activity {
                             User user = snapshot.getValue(User.class);
                             String x = user.password;
                             if(x.equals(userPass)){
+                                //
+                                Toast.makeText(cs121.ucsc.roomie.MainActivity.this, "Welcome!",
+                                        Toast.LENGTH_SHORT).show();
                               currUser = user;
+
+                              indexChop = MainActivity.currUser.userEmail.indexOf('@');
+                              userChop = MainActivity.currUser.userEmail.substring(0, indexChop);
+                              System.out.println(indexChop);
+                              System.out.println(userChop);
                             }
                         }
                         for( DataSnapshot snapshot : dataSnapshot.getChildren()){
@@ -161,9 +172,14 @@ public class MainActivity extends Activity {
 
     //DO NOT DISTURB BUTTON
     public void Busy(View v){
-        //User.busy=1;
-        //cs121.ucsc.roomie.User user = new User(User.name,User.houseAddress,User.houseName,User.msgURL,User.busy,User.password,User.userEmail);
-        //database.child("UserData").child(NewUserActivity.ChoppedUser).setValue(user);
+        alternate*=-1;
+        if(alternate==-1){
+            cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,MainActivity.currUser.houseName,MainActivity.currUser.password,MainActivity.currUser.houseAddress,1,MainActivity.currUser.userEmail, "");
+            database.child("UserData").child(userChop).setValue(user);
+        }else if(alternate==1){
+            cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,MainActivity.currUser.houseName,MainActivity.currUser.password,MainActivity.currUser.houseAddress,0,MainActivity.currUser.userEmail, "");
+            database.child("UserData").child(userChop).setValue(user);
+        }
     }
 
     //public void StartMessaging(View view){
