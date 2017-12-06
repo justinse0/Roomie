@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 //import android.support.design.widget.Snackbar;
 //import android.support.v4.widget.ContentLoadingProgressBar;
-import android.support.v4.widget.ContentLoadingProgressBar;
+//import android.support.v4.widget.ContentLoadingProgressBar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -21,6 +22,8 @@ import com.sendbird.android.SendBird;
 import com.sendbird.android.SendBirdException;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import cs121.ucsc.roomie.main.MessageActivity2;
 import cs121.ucsc.roomie.utils.PreferenceUtils;
@@ -33,7 +36,7 @@ import static cs121.ucsc.roomie.NewUserActivity.PasswordStore;
 public class MainActivity extends Activity {
     private final String APPID = new String("A21A2BDC-6192-4A27-A4A9-F3FEA23F2CFA");
     public static final String VERSION = "3.0.38";
-    private ArrayList<String> roomies;
+    private  static List<String> roomies;
     private ListView listView;
     public static ArrayList<User> houseUserList;
     public static User currUser;
@@ -52,7 +55,8 @@ public class MainActivity extends Activity {
     static int indexChop;
     static String userChop;
     static int alternate = 1;
-    private ContentLoadingProgressBar mProgressBar;
+    final String TAG = "Mainactivity.java";
+    //private ContentLoadingProgressBar mProgressBar;
 
     public static User getUser(){
         return currUser;
@@ -62,15 +66,15 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-       // roomies  = new ArrayList<String>();
-        counter=0;
+        // roomies  = new ArrayList<String>();
+        counter = 0;
         listView = new ListView(this);
         houseUserList = new ArrayList<User>();
+        roomies = new LinkedList<>();
         userPass = (getIntent().getStringExtra("UserPass"));
 
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference();
-
 
 
         //initialize the connection to SendBird servers
@@ -87,47 +91,49 @@ public class MainActivity extends Activity {
         secondPress = false;
 
         // A loading indicator
-        mProgressBar = (ContentLoadingProgressBar) findViewById(R.id.progress_bar_login);
+        // mProgressBar = (ContentLoadingProgressBar) findViewById(R.id.progress_bar_login);
 
 
         database.child("UserData").addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for( DataSnapshot snapshot : dataSnapshot.getChildren()){
-                            User user = snapshot.getValue(User.class);
-                            String x = user.password;
-                            if(x.equals(userPass)){
-                                //
-                                Toast.makeText(cs121.ucsc.roomie.MainActivity.this, "Welcome!",
-                                        Toast.LENGTH_SHORT).show();
-                              currUser = user;
-
-                              indexChop = MainActivity.currUser.userEmail.indexOf('@');
-                              userChop = MainActivity.currUser.userEmail.substring(0, indexChop);
-                              System.out.println(indexChop);
-                              System.out.println(userChop);
-                            }
-                        }
-                        for( DataSnapshot snapshot : dataSnapshot.getChildren()){
-                            User user = snapshot.getValue(User.class);
-
-                            if(!(user.name.equals(currUser.name)) && user.houseName.equals(currUser.houseName)){
-                                System.out.println(user.name);
-                                houseUserList.add(user);
-                                counter+=1;
-                            }
-                        }
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    User user = snapshot.getValue(User.class);
+                    String x = user.password;
+                    if (x.equals(userPass)) {
+                        //
+                        Toast.makeText(cs121.ucsc.roomie.MainActivity.this, "Welcome!",
+                                Toast.LENGTH_SHORT).show();
+                        currUser = user;
+                        houseUserList.add(currUser);
+                        indexChop = MainActivity.currUser.userEmail.indexOf('@');
+                        userChop = MainActivity.currUser.userEmail.substring(0, indexChop);
+                        roomies.add(userChop);
+                        System.out.println(indexChop);
+                        System.out.println(userChop);
                     }
+                }
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    User user = snapshot.getValue(User.class);
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
+                    if (!(user.name.equals(currUser.name)) && user.houseName.equals(currUser.houseName)) {
+                        System.out.println(user.name);
+                        houseUserList.add(user);
+                        roomies.add(user.userEmail.substring(0, user.userEmail.indexOf('@')));
+                        counter += 1;
                     }
-                });
+                }
+            }
 
-      //  for (int i=0; i<counter; i++){
-      //      roomies.add(houseUserList.get(i).name);
-      //  }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+        //  for (int i=0; i<counter; i++){
+        //      roomies.add(houseUserList.get(i).name);
+        //  }
      /*   ArrayAdapter<String> listArrayAdapter = new ArrayAdapter<String>(MainActivity.this,
                 android.R.layout.simple_list_item_1, roomies);
         if(listArrayAdapter != null) {
@@ -146,8 +152,8 @@ public class MainActivity extends Activity {
         goTodo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 Intent intent = new Intent(cs121.ucsc.roomie.MainActivity.this, ToDoActivity.class);
-               // intent.putExtra("CurrentUser", currUser.userPass);
+                Intent intent = new Intent(cs121.ucsc.roomie.MainActivity.this, ToDoActivity.class);
+                // intent.putExtra("CurrentUser", currUser.userPass);
                 startActivity(intent);
             }
         });
@@ -163,21 +169,30 @@ public class MainActivity extends Activity {
             @Override
             public void onClick(View v) {
                 SendBirdConnect();
-                // Intent intent = new Intent(MainActivity.this, MessageActivity2.class);
-                //  intent.putExtra("CurrentUser", userPass);
-                // startActivity(intent);
             }
+            //if(userFlag == true) {
+
+            // }
+            // Intent intent = new Intent(MainActivity.this, MessageActivity2.class);
+            //  intent.putExtra("CurrentUser", userPass);
+            // startActivity(intent);
+
         });
     }
+
 
     //DO NOT DISTURB BUTTON
     public void Busy(View v){
         alternate*=-1;
         if(alternate==-1){
-            cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,MainActivity.currUser.houseName,MainActivity.currUser.password,MainActivity.currUser.houseAddress,1,MainActivity.currUser.userEmail, "");
+            cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,
+                    MainActivity.currUser.houseName,MainActivity.currUser.password,
+                    MainActivity.currUser.houseAddress,1,MainActivity.currUser.userEmail, "","");
             database.child("UserData").child(userChop).setValue(user);
         }else if(alternate==1){
-            cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,MainActivity.currUser.houseName,MainActivity.currUser.password,MainActivity.currUser.houseAddress,0,MainActivity.currUser.userEmail, "");
+            cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,
+                    MainActivity.currUser.houseName,MainActivity.currUser.password,
+                    MainActivity.currUser.houseAddress,0,MainActivity.currUser.userEmail, "","");
             database.child("UserData").child(userChop).setValue(user);
         }
     }
@@ -214,6 +229,7 @@ public class MainActivity extends Activity {
         String userId = currUser.name;
         //replace  spaces in username
         userId = userId.replaceAll("\\s", "");
+        currUser.msgID = userId;
         String userNickname = userId;
 
         PreferenceUtils.setUserId(cs121.ucsc.roomie.MainActivity.this, userId);
@@ -257,6 +273,8 @@ public class MainActivity extends Activity {
                 // Update the user's nickname
                 updateCurrentUserInfo(userNickname);
                 updateCurrentUserPushToken();
+                currUser.msgID = user.getUserId();
+                Log.i(TAG, "onConnected user ID: "+ user.getUserId());
 
                 // Proceed to MessageActivity2
                 Intent intent = new Intent(cs121.ucsc.roomie.MainActivity.this, MessageActivity2.class);

@@ -11,6 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.sendbird.android.GroupChannel;
 import com.sendbird.android.GroupChannelListQuery;
 import com.sendbird.android.SendBird;
@@ -31,15 +34,23 @@ import cs121.ucsc.roomie.openchannel.OpenChannelActivity;
 import cs121.ucsc.roomie.utils.PreferenceUtils;
 
 public class MessageActivity2 extends AppCompatActivity {
-
-    private ArrayList<User> houseUserList;
+    final String TAG = "MessageActivity2";
+    public ArrayList<User> houseUserList;
     private List<String> channelUserList;
     private Toolbar mToolbar;
+    private boolean houseChatFlag;
+    private String HOUSE_URL;
+    private String houseName;
+    private GroupChannel houseChannel;
+    FirebaseAuth mAuth;
+    DatabaseReference database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_activity2);
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance().getReference();
 Log.d("MessageActivity2", "passed setContentView");
  //       mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
         Log.d("MessageActivity2", "passed findViewById");
@@ -76,10 +87,37 @@ Log.d("MessageActivity2", "passed setContentView");
 
         houseUserList = MainActivity.houseUserList;
         channelUserList = new LinkedList<>();
-        for(int i=0; i < houseUserList.size(); i++){
-            channelUserList.add(houseUserList.get(i).name);
+        /*for(int i=0; i < houseUserList.size(); i++){
+            channelUserList.add(houseUserList.get(i).msgID);
+            Log.i(TAG, "onCreate: "+ channelUserList.get(i));
         }
-        GroupChannelListQuery houseChannel = getHouseChannel(channelUserList);
+        */
+        channelUserList.add(MainActivity.currUser.msgID);
+        Log.d(TAG, "onCreate: house chat does not exist. Creating new chat");
+        GroupChannel.createChannelWithUserIds(channelUserList , true, MainActivity.currUser.houseName,
+                null,null, null, new GroupChannel.GroupChannelCreateHandler() {
+                    @Override
+                    public void onResult(GroupChannel groupChannel, SendBirdException e) {
+                        if (e != null){
+                            //error
+                            Log.e(TAG, "onResult: error creating channel", e);
+                            return;
+                        }
+                        else{
+                            Log.d(TAG, "onResult: group chat created successfully");
+                            HOUSE_URL = groupChannel.getUrl();
+                            houseChannel = groupChannel;
+                            for (int i=0; i<MainActivity.houseUserList.size();i++) {
+                                cs121.ucsc.roomie.User holder = houseUserList.get(i);
+                                holder.msgURL = HOUSE_URL;
+                                database.child("UserData").child(holder.userEmail.substring(0,
+                                        holder.userEmail.indexOf('@'))).setValue(holder);
+                            }
+
+                        }
+                    }
+                });
+        //GroupChannelListQuery houseChannel = getHouseChannel(channelUserList);
     }
 
     /**
