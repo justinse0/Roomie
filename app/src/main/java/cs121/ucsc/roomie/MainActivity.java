@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 //import android.support.design.widget.Snackbar;
 //import android.support.v4.widget.ContentLoadingProgressBar;
+import android.support.v4.widget.ContentLoadingProgressBar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -48,7 +49,7 @@ public class MainActivity extends Activity {
     FirebaseAuth mAuth;
     DatabaseReference database;
     private int counter;
-    //private ContentLoadingProgressBar mProgressBar;
+    private ContentLoadingProgressBar mProgressBar;
 
     public static User getUser(){
         return currUser;
@@ -83,7 +84,7 @@ public class MainActivity extends Activity {
         secondPress = false;
 
         // A loading indicator
-      //  mProgressBar = (ContentLoadingProgressBar) findViewById(R.id.progress_bar_login);
+        mProgressBar = (ContentLoadingProgressBar) findViewById(R.id.progress_bar_login);
 
 
         database.child("UserData").addListenerForSingleValueEvent(new ValueEventListener() {
