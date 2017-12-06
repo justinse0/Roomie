@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="EnterHint2" />
+            android:hint="Payment Log" />
         <ImageView
             android:id="@+id/imgViewAdd2"
             android:layout_width="50dp"

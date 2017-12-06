@@ -34,7 +34,7 @@
             android:layout_marginBottom="105dp"
             android:textAllCaps="false"
             android:onClick="RequestGo"
-            android:text="Request" />
+            android:text="Payment Log" />
 
         <Button
             android:id="@+id/button4"
@@ -45,7 +45,7 @@
             android:layout_alignEnd="@+id/RequestPay"
             android:textAllCaps="false"
             android:onClick="PayGo"
-            android:text="Pay" />
+            android:text="Request/Pay" />
 
     </RelativeLayout>
 </layout>

@@ -14,7 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="EnterHint" />
+            android:hint="To Do List" />
         <ImageView
             android:id="@+id/imgViewAdd"
             android:layout_width="50dp"
@@ -23,11 +23,11 @@
             android:background="@drawable/add"
             />
     </LinearLayout>
+
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="342dp"
         android:layout_weight="1"
-        android:dividerHeight="2dp" >
-    </ListView>
+        android:dividerHeight="2dp"></ListView>
 </LinearLayout>

@@ -21,7 +21,7 @@ public class BillSplitActivity extends AppCompatActivity {
     }
 
     public void PayGo(View v){
-        Intent intent = new Intent(this, PayActivity.class);
+        Intent intent = getPackageManager().getLaunchIntentForPackage("com.venmo");
         startActivity(intent);
     }
 }

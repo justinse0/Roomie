@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class ToDoCustomAdapter extends BaseAdapter {
     Context context;
-    ArrayList<ToDoModel> itemModelList;
+    static ArrayList<ToDoModel> itemModelList;
     FirebaseAuth mAuth;
     DatabaseReference database;
     public ToDoCustomAdapter(Context context, ArrayList<ToDoModel> modelList) {
