@@ -24,13 +24,13 @@ import java.util.ArrayList;
 public class RequestCustomAdapter extends BaseAdapter {
     Context context;
     ArrayList<RequestModel> itemModelList;
-    //FirebaseAuth mAuth;
-    //DatabaseReference database;
+    FirebaseAuth mAuth;
+    DatabaseReference database;
     public RequestCustomAdapter(Context context, ArrayList<RequestModel> modelList) {
         this.context = context;
         this.itemModelList = modelList;
-        //mAuth = FirebaseAuth.getInstance();
-        //database = FirebaseDatabase.getInstance().getReference();
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance().getReference();
     }
 
     @Override
@@ -61,7 +61,7 @@ public class RequestCustomAdapter extends BaseAdapter {
                 @Override
                 public void onClick(View v) {
                     itemModelList.remove(position);
-                    //database.child("ToDoData").child(MainActivity.currUser.houseName).setValue(itemModelList);
+                    database.child("RequestData").child(MainActivity.currUser.name).setValue(itemModelList);
                     notifyDataSetChanged();
                 }
             });

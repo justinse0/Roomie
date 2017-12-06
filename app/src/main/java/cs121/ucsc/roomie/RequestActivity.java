@@ -26,19 +26,19 @@ public class RequestActivity extends Activity {
     ArrayList<RequestModel> ItemModelList;
     RequestCustomAdapter customAdapter;
 
-    //DatabaseReference database;
+    DatabaseReference database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request);
-        //database = FirebaseDatabase.getInstance().getReference();
+        database = FirebaseDatabase.getInstance().getReference();
         listView = (ListView) findViewById(R.id.listview2);
         editTextView = (EditText) findViewById(R.id.editTextView2);
         ItemModelList = new ArrayList<RequestModel>();
 
 
-        //ItemModelList = fetch();
+        ItemModelList = fetch();
 
         customAdapter = new RequestCustomAdapter(getApplicationContext(), ItemModelList);
 
@@ -47,30 +47,29 @@ public class RequestActivity extends Activity {
         customAdapter.notifyDataSetChanged();
 
     }
-    //public ArrayList<ToDoModel> fetch(){
-    //    final ArrayList<ToDoModel> list = new ArrayList();
-    //    DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("ToDoData").child(MainActivity.currUser.houseName);
-    //    dr.addListenerForSingleValueEvent(new ValueEventListener() {
-    //        @Override
-    //        public void onDataChange(DataSnapshot dataSnapshot) {
-    //            try{
-    //                for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
-    //                    ToDoModel tdm = postSnapshot.getValue(ToDoModel.class);
-    //                    System.out.println(tdm.getName());
-    //                    list.add(tdm);
-    //                }
-    //            }catch(Exception e){
-    //                e.printStackTrace();
-    //            }
-    //        }
+    public ArrayList<RequestModel> fetch(){
+        final ArrayList<RequestModel> list = new ArrayList();
+        DatabaseReference dr = FirebaseDatabase.getInstance().getReference().child("RequestData").child(MainActivity.currUser.name);
+        dr.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                try{
+                    for(DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                        RequestModel tdm = postSnapshot.getValue(RequestModel.class);
+                        System.out.println(tdm.getName());
+                        list.add(tdm);
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+                    @Override
+            public void onCancelled(DatabaseError databaseError) {
 
-    //        @Override
-    //        public void onCancelled(DatabaseError databaseError) {
-
-    //        }
-    //    });
-    //    return list;
-    //}
+            }
+        });
+        return list;
+    }
     @SuppressLint("NewApi")
     public void addValue(View v) {
         String name = editTextView.getText().toString();
@@ -80,7 +79,7 @@ public class RequestActivity extends Activity {
         } else {
             RequestModel md = new RequestModel(name);
             ItemModelList.add(md);
-            //database.child("ToDoData").child(MainActivity.currUser.houseName).setValue(ItemModelList);
+            database.child("RequestData").child(MainActivity.currUser.name).setValue(ItemModelList);
             customAdapter.notifyDataSetChanged();
             editTextView.setText("");
         }
