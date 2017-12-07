@@ -91,7 +91,7 @@ public class GroupChatFragment extends Fragment {
     private ImageButton mUploadFileButton;
     private View mCurrentEventLayout;
     private TextView mCurrentEventText;
-
+    public static final String EXTRA_GROUP_CHANNEL_URL = "GROUP_CHANNEL_URL";
     private GroupChannel mChannel;
     private String mChannelUrl;
     private PreviousMessageListQuery mPrevMessageListQuery;
@@ -108,7 +108,7 @@ public class GroupChatFragment extends Fragment {
         GroupChatFragment fragment = new GroupChatFragment();
 
         Bundle args = new Bundle();
-        args.putString(GroupChannelListFragment.EXTRA_GROUP_CHANNEL_URL, channelUrl);
+        args.putString(EXTRA_GROUP_CHANNEL_URL, channelUrl);
         fragment.setArguments(args);
 
         return fragment;
@@ -126,7 +126,7 @@ public class GroupChatFragment extends Fragment {
             mChannelUrl = savedInstanceState.getString(STATE_CHANNEL_URL);
         } else {
             // Get channel URL from GroupChannelListFragment.
-            mChannelUrl = getArguments().getString(GroupChannelListFragment.EXTRA_GROUP_CHANNEL_URL);
+            mChannelUrl = getArguments().getString(EXTRA_GROUP_CHANNEL_URL);
         }
 
         Log.d(LOG_TAG, mChannelUrl);
@@ -407,9 +407,11 @@ public class GroupChatFragment extends Fragment {
         int id = item.getItemId();
 
         if (id == R.id.action_group_channel_invite) {
+            /*
             Intent intent = new Intent(getActivity(), InviteMemberActivity.class);
             intent.putExtra(EXTRA_CHANNEL_URL, mChannelUrl);
             startActivity(intent);
+            */
             return true;
         } else if (id == R.id.action_group_channel_view_members) {
             Intent intent = new Intent(getActivity(), MemberListActivity.class);

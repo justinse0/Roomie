@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="Group Channels"
-                    android:textColor="@color/groupChatTextMe"
+                    android:textColor="@color/groupChatTextOther"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -74,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="Open Channels"
-                    android:textColor="@color/groupChatTextMe"
+                    android:textColor="@color/groupChatTextOther"
                     android:textSize="16sp" />
 
             </LinearLayout>

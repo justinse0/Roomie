@@ -43,6 +43,7 @@ public class MainActivity extends Activity {
     private String userPass;
     private boolean secondPress;
     private String[] userArray;
+    private boolean houseEstablished;
     Button displayMates ;
     Button goTodo;
     Button messageStart;
@@ -56,6 +57,12 @@ public class MainActivity extends Activity {
     static String userChop;
     static int alternate = 1;
     final String TAG = "Mainactivity.java";
+    String userEmail;
+    public static boolean openChatExists;
+    public static boolean groupChatExists;
+    private boolean currUserHasURL;
+    public static String groupChatURL;
+    private boolean userFound;
     //private ContentLoadingProgressBar mProgressBar;
 
     public static User getUser(){
@@ -72,10 +79,13 @@ public class MainActivity extends Activity {
         houseUserList = new ArrayList<User>();
         roomies = new LinkedList<>();
         userPass = (getIntent().getStringExtra("UserPass"));
-
+        userEmail  = (getIntent().getStringExtra("UserEmail"));
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance().getReference();
-
+        groupChatExists = false;
+        openChatExists = false;
+        currUserHasURL = false;
+        userFound = false;
 
         //initialize the connection to SendBird servers
         SendBird.init(APPID, this);
@@ -143,6 +153,7 @@ public class MainActivity extends Activity {
 
         });
     }
+    //update the lists as well as the database
     public void listupdate(){
         houseUserList.clear();
         roomies.clear();
@@ -151,8 +162,8 @@ public class MainActivity extends Activity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User user = snapshot.getValue(User.class);
-                    String x = user.password;
-                    if (x.equals(userPass)) {
+                    String x = user.userEmail;
+                    if (x.equals(userEmail)) {
                         //
                         Toast.makeText(cs121.ucsc.roomie.MainActivity.this, "Welcome!",
                                 Toast.LENGTH_SHORT).show();
@@ -163,6 +174,13 @@ public class MainActivity extends Activity {
                         roomies.add(userChop);
                         System.out.println(indexChop);
                         System.out.println(userChop);
+                        userFound = true;
+                        Log.i(TAG, "onDataChange: user email=" + userEmail);
+                        if (!(currUser.msgURL.equals(""))){
+                            groupChatExists = true;
+                            currUserHasURL = true;
+                            groupChatURL = currUser.msgURL;
+                        }
                     }
                 }
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -170,6 +188,20 @@ public class MainActivity extends Activity {
 
                     if (!(user.name.equals(currUser.name)) && user.houseName.equals(currUser.houseName)) {
                         System.out.println(user.name);
+                        if (user.msgURL != ""){
+                            groupChatExists = true;
+                            groupChatURL = user.msgURL;
+                        }
+                        if (groupChatExists){
+                            Log.i(TAG, "onDataChange: groupChatExists="+groupChatExists);
+                            Log.i(TAG, "onDataChange: user has URL="+currUserHasURL);
+                            if (currUserHasURL == false){
+                                currUser.msgURL = groupChatURL;
+                                database.child("UserData").child(currUser.userEmail.substring(0,
+                                        currUser.userEmail.indexOf('@'))).setValue(currUser);
+                            }
+                            user.msgURL = groupChatURL;
+                        }
                         houseUserList.add(user);
                         roomies.add(user.userEmail.substring(0, user.userEmail.indexOf('@')));
                         counter += 1;
@@ -191,12 +223,14 @@ public class MainActivity extends Activity {
         if(alternate==-1){
             cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,
                     MainActivity.currUser.houseName,MainActivity.currUser.password,
-                    MainActivity.currUser.houseAddress,1,MainActivity.currUser.userEmail, MainActivity.currUser.msgURL, MainActivity.currUser.msgID);
+                    MainActivity.currUser.houseAddress,1,MainActivity.currUser.userEmail,
+                    MainActivity.currUser.msgURL, MainActivity.currUser.msgID);
             database.child("UserData").child(userChop).setValue(user);
         }else if(alternate==1){
             cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,
                     MainActivity.currUser.houseName,MainActivity.currUser.password,
-                    MainActivity.currUser.houseAddress,0,MainActivity.currUser.userEmail, MainActivity.currUser.msgURL,  MainActivity.currUser.msgID);
+                    MainActivity.currUser.houseAddress,0,MainActivity.currUser.userEmail,
+                    MainActivity.currUser.msgURL,  MainActivity.currUser.msgID);
             database.child("UserData").child(userChop).setValue(user);
         }
         listupdate();
@@ -231,16 +265,18 @@ public class MainActivity extends Activity {
 
 
     public void SendBirdConnect(){
-        String userId = currUser.name;
-        //replace  spaces in username
-        userId = userId.replaceAll("\\s", "");
-        currUser.msgID = userId;
-        String userNickname = userId;
+        if(userFound) {
+            String userId = currUser.name;
+            //replace  spaces in username
+            userId = userId.replaceAll("\\s", "");
+            currUser.msgID = userId;
+            String userNickname = userId;
 
-        PreferenceUtils.setUserId(cs121.ucsc.roomie.MainActivity.this, userId);
-        PreferenceUtils.setNickname(cs121.ucsc.roomie.MainActivity.this, userNickname);
+            PreferenceUtils.setUserId(cs121.ucsc.roomie.MainActivity.this, userId);
+            PreferenceUtils.setNickname(cs121.ucsc.roomie.MainActivity.this, userNickname);
 
-        connectToSendBird(userId, userNickname);
+            connectToSendBird(userId, userNickname);
+        }
     }
     /**
      * Attempts to connect a user to SendBird.
