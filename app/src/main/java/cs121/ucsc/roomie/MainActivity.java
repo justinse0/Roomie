@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -48,10 +49,10 @@ public class MainActivity extends Activity {
     private boolean houseEstablished;
 
     Button displayMates ;
-    Button goTodo;
-    Button messageStart;
-    Button splitBill;
-    Button viewprof;
+    ImageButton goTodo;
+    ImageButton messageStart;
+    ImageButton goPayment;
+    ImageButton viewprof;
     Button disturb;
     Switch dndSwitch;
 
@@ -102,10 +103,10 @@ public class MainActivity extends Activity {
         //create the list and buttons for displaying roommates
         //and find the current user
         //listView = (ListView) findViewById(R.id.roomieList);
-        goTodo = (Button) findViewById(R.id.todo);
-        splitBill = (Button) findViewById(R.id.billSplit);
-        viewprof = (Button) findViewById(R.id.profile);
-        messageStart = (Button) findViewById(R.id.messaging);
+        goTodo = (ImageButton) findViewById(R.id.todo);
+        goPayment = (ImageButton) findViewById(R.id.payment);
+        viewprof = (ImageButton) findViewById(R.id.profile);
+        messageStart = (ImageButton) findViewById(R.id.messaging);
         dndSwitch = (Switch) findViewById(R.id.dnd_switch);
         secondPress = false;
 
@@ -126,7 +127,7 @@ public class MainActivity extends Activity {
 */
 
 
-        splitBill.setOnClickListener(new View.OnClickListener() {
+        goPayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent((cs121.ucsc.roomie.MainActivity.this), BillSplitActivity.class);

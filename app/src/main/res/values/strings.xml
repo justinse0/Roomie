@@ -5,7 +5,7 @@
     <string name="roommates">Roommates</string>
     <string name="to_do">To-Do</string>
     <string name="messaging">Messaging</string>
-    <string name="split_bill">Split Bill</string>
+    <string name="payment">Payment</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

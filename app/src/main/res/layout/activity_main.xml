@@ -20,6 +20,7 @@
         android:layout_weight="1"
         android:weightSum="2">
 
+        <!--
         <Button
             android:id="@+id/profile"
             android:background="@drawable/tile_buttons"
@@ -32,7 +33,22 @@
             android:layout_weight="1"
             android:text="@string/roommates"
             />
+            -->
 
+        <ImageButton
+            android:id="@+id/profile"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/people"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            android:padding="15dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/tile_buttons"
+            android:layout_weight="1"/>
+
+        <!--
         <Button
             android:id="@+id/todo"
             android:background="@drawable/tile_buttons"
@@ -45,6 +61,20 @@
             android:layout_weight="1"
             android:text="@string/to_do"
             />
+        -->
+
+        <ImageButton
+            android:id="@+id/todo"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/notepad"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:layout_gravity="center"
+            android:padding="15dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/tile_buttons"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
@@ -55,6 +85,7 @@
         android:layout_weight="1"
         android:weightSum="2">
 
+        <!--
         <Button
             android:id="@+id/messaging"
             android:background="@drawable/tile_buttons"
@@ -67,7 +98,21 @@
             android:layout_weight="1"
             android:text="@string/messaging"
             />
+        -->
 
+        <ImageButton
+            android:id="@+id/messaging"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/if_messages_216331"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:padding="15dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/tile_buttons"
+            android:layout_weight="1"/>
+
+        <!--
         <Button
             android:id="@+id/billSplit"
             android:background="@drawable/tile_buttons"
@@ -78,8 +123,21 @@
             android:paddingTop="80dp"
             android:paddingBottom="80dp"
             android:layout_weight="1"
-            android:text="@string/split_bill"
+            android:text="@string/payment"
             />
+            -->
+
+        <ImageButton
+            android:id="@+id/payment"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/money"
+            android:scaleType="fitXY"
+            android:adjustViewBounds="true"
+            android:padding="15dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/tile_buttons"
+            android:layout_weight="1"/>
 
     </LinearLayout>
 
