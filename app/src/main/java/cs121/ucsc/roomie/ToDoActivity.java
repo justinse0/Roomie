@@ -75,7 +75,7 @@ public class ToDoActivity extends Activity {
     public void addValue(View v) {
         String name = editTextView.getText().toString();
         if (name.isEmpty()) {
-            Toast.makeText(getApplicationContext(), "Plz enter Values",
+            Toast.makeText(getApplicationContext(), "Enter a task!",
                     Toast.LENGTH_SHORT).show();
         } else {
             ToDoModel md = new ToDoModel(name);
