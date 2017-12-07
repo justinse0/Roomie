@@ -2,6 +2,7 @@ package cs121.ucsc.roomie;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 //import android.support.design.widget.Snackbar;
 //import android.support.v4.widget.ContentLoadingProgressBar;
@@ -48,6 +49,7 @@ public class MainActivity extends Activity {
     Button messageStart;
     Button splitBill;
     Button viewprof;
+    Button disturb;
     public static String[] staticNames;
     FirebaseAuth mAuth;
     DatabaseReference database;
@@ -67,6 +69,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // roomies  = new ArrayList<String>();
+        Toast.makeText(cs121.ucsc.roomie.MainActivity.this, "Welcome!",
+                Toast.LENGTH_SHORT).show();
         counter = 0;
         listView = new ListView(this);
         houseUserList = new ArrayList<User>();
@@ -154,13 +158,14 @@ public class MainActivity extends Activity {
                     String x = user.password;
                     if (x.equals(userPass)) {
                         //
-                        Toast.makeText(cs121.ucsc.roomie.MainActivity.this, "Welcome!",
-                                Toast.LENGTH_SHORT).show();
                         currUser = user;
                         houseUserList.add(currUser);
+                        disturb = findViewById(R.id.dnd);
                         if(MainActivity.currUser.busy==0){
+                            disturb.setBackgroundColor(Color.RED);
                             alternate=1;
                         }else if(MainActivity.currUser.busy==1){
+                            disturb.setBackgroundColor(Color.GREEN);
                             alternate=-1;
                         }
                         indexChop = MainActivity.currUser.userEmail.indexOf('@');
@@ -192,17 +197,24 @@ public class MainActivity extends Activity {
 
     //DO NOT DISTURB BUTTON
     public void Busy(View v){
+        disturb = findViewById(R.id.dnd);
         alternate*=-1;
         if(alternate==-1){
             cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,
                     MainActivity.currUser.houseName,MainActivity.currUser.password,
                     MainActivity.currUser.houseAddress,1,MainActivity.currUser.userEmail, MainActivity.currUser.msgURL, MainActivity.currUser.msgID);
             database.child("UserData").child(userChop).setValue(user);
+            disturb.setBackgroundColor(Color.GREEN);
+            Toast.makeText(cs121.ucsc.roomie.MainActivity.this, "Do Not Disturb Mode On",
+                    Toast.LENGTH_SHORT).show();
         }else if(alternate==1){
             cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,
                     MainActivity.currUser.houseName,MainActivity.currUser.password,
                     MainActivity.currUser.houseAddress,0,MainActivity.currUser.userEmail, MainActivity.currUser.msgURL,  MainActivity.currUser.msgID);
             database.child("UserData").child(userChop).setValue(user);
+            disturb.setBackgroundColor(Color.RED);
+            Toast.makeText(cs121.ucsc.roomie.MainActivity.this, "Do Not Disturb Mode Off",
+                    Toast.LENGTH_SHORT).show();
         }
         listupdate();
     }
