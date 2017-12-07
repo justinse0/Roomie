@@ -191,12 +191,12 @@ public class MainActivity extends Activity {
         if(alternate==-1){
             cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,
                     MainActivity.currUser.houseName,MainActivity.currUser.password,
-                    MainActivity.currUser.houseAddress,1,MainActivity.currUser.userEmail, "","");
+                    MainActivity.currUser.houseAddress,1,MainActivity.currUser.userEmail, MainActivity.currUser.msgURL, MainActivity.currUser.msgID);
             database.child("UserData").child(userChop).setValue(user);
         }else if(alternate==1){
             cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,
                     MainActivity.currUser.houseName,MainActivity.currUser.password,
-                    MainActivity.currUser.houseAddress,0,MainActivity.currUser.userEmail, "","");
+                    MainActivity.currUser.houseAddress,0,MainActivity.currUser.userEmail, MainActivity.currUser.msgURL,  MainActivity.currUser.msgID);
             database.child("UserData").child(userChop).setValue(user);
         }
         listupdate();
