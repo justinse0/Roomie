@@ -33,16 +33,15 @@ public class SelectDistinctFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_select_distinct, container, false);
 
-        ((CreateGroupChannelActivity) getActivity()).setState(CreateGroupChannelActivity.STATE_SELECT_DISTINCT);
 
-        mListener = (CreateGroupChannelActivity) getActivity();
+        //mListener = (CreateGroupChannelActivity) getActivity();
 
         mCheckBox = (CheckBox) rootView.findViewById(R.id.checkbox_select_distinct);
         mCheckBox.setChecked(true);
         mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                mListener.onDistinctSelected(isChecked);
+               // mListener.onDistinctSelected(isChecked);
             }
         });
 

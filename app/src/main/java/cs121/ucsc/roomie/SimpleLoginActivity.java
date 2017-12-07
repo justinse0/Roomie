@@ -58,7 +58,7 @@ public class SimpleLoginActivity extends Activity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                          makeNew(nPass);
+                          makeNew(nAcc, nPass);
 
                         } else {
                             // If sign in fails, display a message to the user.
@@ -75,9 +75,10 @@ public class SimpleLoginActivity extends Activity {
 
     }
 
-    public void makeNew(String s){
+    public void makeNew(String s, String x){
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("UserPass", s);
+        intent.putExtra("UserEmail", s);
+        intent.putExtra("UserPass", x);
         startActivity(intent);
     }
 

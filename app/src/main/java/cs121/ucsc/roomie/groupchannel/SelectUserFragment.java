@@ -67,9 +67,7 @@ public class SelectUserFragment extends Fragment {
 
         loadInitialUserList(15);
 
-        ((CreateGroupChannelActivity) getActivity()).setState(CreateGroupChannelActivity.STATE_SELECT_USERS);
-
-        return rootView;
+         return rootView;
     }
 
     private void setUpRecyclerView() {

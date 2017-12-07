@@ -40,6 +40,12 @@
             android:layout_weight="1"
             android:orientation="vertical">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="#e0e0e0" />
+
             <LinearLayout
                 android:id="@+id/linear_layout_group_channels"
                 android:layout_width="match_parent"
@@ -58,15 +64,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Group Channels"
-                    android:textColor="@color/groupChatTextMe"
+                    android:text="Private House Channel"
+                    android:textColor="@color/groupChatTextOther"
                     android:textSize="16sp" />
 
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
+                android:layout_height="16dp"
                 android:layout_weight="0"
                 android:background="#e0e0e0" />
 
@@ -89,17 +95,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="Open Channels"
-                    android:textColor="@color/groupChatTextMe"
+                    android:text="Neighboring Houses"
+                    android:textColor="@color/groupChatTextOther"
                     android:textSize="16sp" />
 
             </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="0"
-                android:background="#e0e0e0" />
 
             <View
                 android:layout_width="match_parent"
@@ -107,21 +107,6 @@
                 android:layout_weight="1" />
 
         </LinearLayout>
-
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/button_disconnect"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginBottom="24dp"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:layout_marginTop="24dp"
-            android:layout_weight="0"
-            android:background="@drawable/selector_btn_white"
-            android:stateListAnimator="@null"
-            android:text="@string/login_disconnect"
-            app:theme="@style/AppTheme.ButtonStyle2"></android.support.v7.widget.AppCompatButton>
 
         <TextView
             android:id="@+id/text_main_versions"

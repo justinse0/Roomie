@@ -42,8 +42,8 @@ public class MemberListActivity extends AppCompatActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_member_list);
         mListAdapter = new UserListAdapter(this, true);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_member_list);
-        setSupportActionBar(toolbar);
+       // Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_member_list);
+        //setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_left_white_24_dp);
