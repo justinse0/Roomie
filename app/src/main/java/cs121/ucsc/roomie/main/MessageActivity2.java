@@ -81,13 +81,7 @@ public class MessageActivity2 extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.button_disconnect).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Unregister push tokens and disconnect
-                disconnect();
-            }
-        });
+
 
         // Displays the SDK version in a TextView
         String sdkVersion = String.format(getResources().getString(R.string.all_app_version),
@@ -103,11 +97,11 @@ public class MessageActivity2 extends AppCompatActivity {
         }
 
         //  channelUserList.add(MainActivity.currUser.msgID);
-        if (MainActivity.groupChatExists == false) {
+        
             Log.d(TAG, "onCreate: house chat does not exist. Creating new chat");
             createHouseChat();
             MainActivity.groupChatExists = true;
-        } /*else {
+        /*else {
             Log.i(TAG, "onCreate: chat  URL" + MainActivity.groupChatURL);
             GroupChannel.getChannel(MainActivity.groupChatURL, new GroupChannel.GroupChannelGetHandler() {
                 @Override
