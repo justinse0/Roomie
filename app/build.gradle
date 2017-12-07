@@ -52,7 +52,7 @@ dependencies {
     compile 'org.jsoup:jsoup:1.10.2'
     compile 'com.dinuscxj:circleprogressbar:1.1.1'
     compile 'com.github.stfalcon:multiimageview:0.1'
-    implementation 'com.android.support:support-v4:27.0.2'
+
 }
 
 apply plugin: 'com.google.gms.google-services'
