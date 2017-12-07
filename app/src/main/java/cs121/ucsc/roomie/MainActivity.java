@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,12 +46,15 @@ public class MainActivity extends Activity {
     private boolean secondPress;
     private String[] userArray;
     private boolean houseEstablished;
+
     Button displayMates ;
     Button goTodo;
     Button messageStart;
     Button splitBill;
     Button viewprof;
     Button disturb;
+    Switch dndSwitch;
+
     public static String[] staticNames;
     FirebaseAuth mAuth;
     DatabaseReference database;
@@ -65,6 +69,7 @@ public class MainActivity extends Activity {
     private boolean currUserHasURL;
     public static String groupChatURL;
     private boolean userFound;
+    public boolean doNotDisturb;
     //private ContentLoadingProgressBar mProgressBar;
 
     public static User getUser(){
@@ -101,6 +106,7 @@ public class MainActivity extends Activity {
         splitBill = (Button) findViewById(R.id.billSplit);
         viewprof = (Button) findViewById(R.id.profile);
         messageStart = (Button) findViewById(R.id.messaging);
+        dndSwitch = (Switch) findViewById(R.id.dnd_switch);
         secondPress = false;
 
         // A loading indicator
@@ -156,6 +162,30 @@ public class MainActivity extends Activity {
             // startActivity(intent);
 
         });
+        dndSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                doNotDisturb = dndSwitch.isChecked();
+                if (doNotDisturb) {
+                    cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,
+                            MainActivity.currUser.houseName,MainActivity.currUser.password,
+                            MainActivity.currUser.houseAddress,1,MainActivity.currUser.userEmail,
+                            MainActivity.currUser.msgURL, MainActivity.currUser.msgID);
+                    database.child("UserData").child(userChop).setValue(user);
+                    Toast.makeText(cs121.ucsc.roomie.MainActivity.this, "Do Not Disturb Mode On",
+                            Toast.LENGTH_SHORT).show();
+                } else if (!doNotDisturb) {
+                    cs121.ucsc.roomie.User user = new User(MainActivity.currUser.name,
+                            MainActivity.currUser.houseName,MainActivity.currUser.password,
+                            MainActivity.currUser.houseAddress,0,MainActivity.currUser.userEmail,
+                            MainActivity.currUser.msgURL,  MainActivity.currUser.msgID);
+                    database.child("UserData").child(userChop).setValue(user);
+                    Toast.makeText(cs121.ucsc.roomie.MainActivity.this, "Do Not Disturb Mode Off",
+                            Toast.LENGTH_SHORT).show();
+                }
+                listupdate();
+            }
+        });
     }
     //update the lists as well as the database
     public void listupdate(){
@@ -171,6 +201,7 @@ public class MainActivity extends Activity {
                         //
                         currUser = user;
                         houseUserList.add(currUser);
+                        /*
                         disturb = findViewById(R.id.dnd);
                         if(MainActivity.currUser.busy==0){
                             disturb.setBackgroundColor(Color.RED);
@@ -178,7 +209,7 @@ public class MainActivity extends Activity {
                         }else if(MainActivity.currUser.busy==1){
                             disturb.setBackgroundColor(Color.GREEN);
                             alternate=-1;
-                        }
+                        }*/
                         indexChop = MainActivity.currUser.userEmail.indexOf('@');
                         userChop = MainActivity.currUser.userEmail.substring(0, indexChop);
                         roomies.add(userChop);
@@ -226,7 +257,7 @@ public class MainActivity extends Activity {
         });
     }
 
-
+    /*
     //DO NOT DISTURB BUTTON
     public void Busy(View v){
         disturb = findViewById(R.id.dnd);
@@ -252,6 +283,7 @@ public class MainActivity extends Activity {
         }
         listupdate();
     }
+    */
 
     //public void StartMessaging(View view){
       //      Intent intent = new Intent(MainActivity.this, MessageActivity.class);

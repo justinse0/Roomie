@@ -85,15 +85,26 @@
 
 </LinearLayout>
 
+    <!--
     <Button
         android:id="@+id/dnd"
         style="?android:attr/buttonBarButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@id/messaging"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
         android:onClick="Busy"
         android:text="Do Not Disturb" />
+        -->
+
+    <Switch
+        android:id="@+id/dnd_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:text="Do Not Disturb" />
+
 
 </RelativeLayout>
