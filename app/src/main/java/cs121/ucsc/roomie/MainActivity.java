@@ -83,7 +83,6 @@ public class MainActivity extends Activity {
         //create the list and buttons for displaying roommates
         //and find the current user
         listView = (ListView) findViewById(R.id.roomieList);
-        displayMates = (Button) findViewById(R.id.roomies);
         goTodo = (Button) findViewById(R.id.todo);
         splitBill = (Button) findViewById(R.id.billSplit);
         viewprof = (Button) findViewById(R.id.profile);
@@ -94,42 +93,7 @@ public class MainActivity extends Activity {
         // mProgressBar = (ContentLoadingProgressBar) findViewById(R.id.progress_bar_login);
 
 
-        database.child("UserData").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User user = snapshot.getValue(User.class);
-                    String x = user.password;
-                    if (x.equals(userPass)) {
-                        //
-                        Toast.makeText(cs121.ucsc.roomie.MainActivity.this, "Welcome!",
-                                Toast.LENGTH_SHORT).show();
-                        currUser = user;
-                        houseUserList.add(currUser);
-                        indexChop = MainActivity.currUser.userEmail.indexOf('@');
-                        userChop = MainActivity.currUser.userEmail.substring(0, indexChop);
-                        roomies.add(userChop);
-                        System.out.println(indexChop);
-                        System.out.println(userChop);
-                    }
-                }
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    User user = snapshot.getValue(User.class);
-
-                    if (!(user.name.equals(currUser.name)) && user.houseName.equals(currUser.houseName)) {
-                        System.out.println(user.name);
-                        houseUserList.add(user);
-                        roomies.add(user.userEmail.substring(0, user.userEmail.indexOf('@')));
-                        counter += 1;
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
+       listupdate();
 
         //  for (int i=0; i<counter; i++){
         //      roomies.add(houseUserList.get(i).name);
@@ -179,6 +143,46 @@ public class MainActivity extends Activity {
 
         });
     }
+    public void listupdate(){
+        houseUserList.clear();
+        roomies.clear();
+        database.child("UserData").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    User user = snapshot.getValue(User.class);
+                    String x = user.password;
+                    if (x.equals(userPass)) {
+                        //
+                        Toast.makeText(cs121.ucsc.roomie.MainActivity.this, "Welcome!",
+                                Toast.LENGTH_SHORT).show();
+                        currUser = user;
+                        houseUserList.add(currUser);
+                        indexChop = MainActivity.currUser.userEmail.indexOf('@');
+                        userChop = MainActivity.currUser.userEmail.substring(0, indexChop);
+                        roomies.add(userChop);
+                        System.out.println(indexChop);
+                        System.out.println(userChop);
+                    }
+                }
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    User user = snapshot.getValue(User.class);
+
+                    if (!(user.name.equals(currUser.name)) && user.houseName.equals(currUser.houseName)) {
+                        System.out.println(user.name);
+                        houseUserList.add(user);
+                        roomies.add(user.userEmail.substring(0, user.userEmail.indexOf('@')));
+                        counter += 1;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
 
 
     //DO NOT DISTURB BUTTON
@@ -195,6 +199,7 @@ public class MainActivity extends Activity {
                     MainActivity.currUser.houseAddress,0,MainActivity.currUser.userEmail, "","");
             database.child("UserData").child(userChop).setValue(user);
         }
+        listupdate();
     }
 
     //public void StartMessaging(View view){
