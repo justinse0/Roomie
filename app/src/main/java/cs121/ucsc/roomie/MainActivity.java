@@ -169,6 +169,11 @@ public class MainActivity extends Activity {
                                 Toast.LENGTH_SHORT).show();
                         currUser = user;
                         houseUserList.add(currUser);
+                        if(MainActivity.currUser.busy==0){
+                            alternate=1;
+                        }else if(MainActivity.currUser.busy==1){
+                            alternate=-1;
+                        }
                         indexChop = MainActivity.currUser.userEmail.indexOf('@');
                         userChop = MainActivity.currUser.userEmail.substring(0, indexChop);
                         roomies.add(userChop);
