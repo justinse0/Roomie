@@ -33,7 +33,6 @@ public class SelectDistinctFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_select_distinct, container, false);
 
-        ((CreateGroupChannelActivity) getActivity()).setState(CreateGroupChannelActivity.STATE_SELECT_DISTINCT);
 
         mListener = (CreateGroupChannelActivity) getActivity();
 

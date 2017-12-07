@@ -31,7 +31,7 @@ public class InviteMemberActivity extends AppCompatActivity {
     private LinearLayoutManager mLayoutManager;
     private RecyclerView mRecyclerView;
     private SelectableUserListAdapter mListAdapter;
-    private Toolbar mToolbar;
+    //private Toolbar mToolbar;
 
     private UserListQuery mUserListQuery;
     private String mChannelUrl;

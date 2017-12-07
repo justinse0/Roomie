@@ -60,6 +60,7 @@ Log.d("MessageActivity2", "passed setContentView");
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MessageActivity2.this, GroupChannelActivity.class);
+                intent.putExtra("houseURL", HOUSE_URL);
                 startActivity(intent);
             }
         });

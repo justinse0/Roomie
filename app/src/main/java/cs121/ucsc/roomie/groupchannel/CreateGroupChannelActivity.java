@@ -156,7 +156,7 @@ public class CreateGroupChannelActivity extends AppCompatActivity
      *                  the existing channel instance will be returned.
      */
     private void createGroupChannel(List<String> userIds, boolean distinct) {
-        GroupChannel.createChannelWithUserIds(userIds, distinct, new GroupChannel.GroupChannelCreateHandler() {
+        GroupChannel.createChannelWithUserIds(userIds, distinct, ew GroupChannel.GroupChannelCreateHandler() {
             @Override
             public void onResult(GroupChannel groupChannel, SendBirdException e) {
                 if (e != null) {
