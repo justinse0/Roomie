@@ -96,7 +96,7 @@ public class MainActivity extends Activity {
 
         //create the list and buttons for displaying roommates
         //and find the current user
-        listView = (ListView) findViewById(R.id.roomieList);
+        //listView = (ListView) findViewById(R.id.roomieList);
         goTodo = (Button) findViewById(R.id.todo);
         splitBill = (Button) findViewById(R.id.billSplit);
         viewprof = (Button) findViewById(R.id.profile);

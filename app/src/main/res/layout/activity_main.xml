@@ -6,77 +6,94 @@
     android:layout_height="match_parent"
     tools:context="cs121.ucsc.roomie.MainActivity">
 
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="2">
 
-    <Button
-        android:id="@+id/dnd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:onClick="Busy"
-        android:text="Do Not Disturb" />
 
     <LinearLayout
-        android:id="@+id/buttonView"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/billSplit"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/split_bill" />
+        android:layout_weight="1"
+        android:weightSum="2">
 
         <Button
             android:id="@+id/profile"
-            style="?android:attr/buttonBarButtonStyle"
+            android:background="@drawable/tile_buttons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:paddingTop="80dp"
+            android:paddingBottom="80dp"
             android:layout_weight="1"
-            android:text="@string/roommates" />
+            android:text="@string/roommates"
+            />
 
         <Button
             android:id="@+id/todo"
-            style="?android:attr/buttonBarButtonStyle"
+            android:background="@drawable/tile_buttons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:paddingTop="80dp"
+            android:paddingBottom="80dp"
             android:layout_weight="1"
-            android:text="@string/to_do" />
-
-        <Button
-            android:id="@+id/messaging"
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/messaging" />
-
+            android:text="@string/to_do"
+            />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/listView"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="50dp"
-        android:gravity="top"
-        android:orientation="vertical">
+        android:layout_weight="1"
+        android:weightSum="2">
 
-        <ListView
-            android:id="@+id/roomieList"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_weight="4"
-            android:visibility="invisible">
+        <Button
+            android:id="@+id/messaging"
+            android:background="@drawable/tile_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_margin="10dp"
+            android:paddingTop="80dp"
+            android:paddingBottom="80dp"
+            android:layout_weight="1"
+            android:text="@string/messaging"
+            />
 
-        </ListView>
+        <Button
+            android:id="@+id/billSplit"
+            android:background="@drawable/tile_buttons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_margin="10dp"
+            android:paddingTop="80dp"
+            android:paddingBottom="80dp"
+            android:layout_weight="1"
+            android:text="@string/split_bill"
+            />
+
     </LinearLayout>
+
+</LinearLayout>
+
+    <Button
+        android:id="@+id/dnd"
+        style="?android:attr/buttonBarButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/messaging"
+        android:layout_alignParentBottom="true"
+        android:onClick="Busy"
+        android:text="Do Not Disturb" />
 
 </RelativeLayout>
