@@ -12,10 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/houseAddress"
-        android:layout_marginBottom="21dp"
+        android:layout_marginBottom="20dp"
         android:layout_weight="1"
         android:text="Already Registered?  "
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="#0B5345"
         android:textSize="14sp" />
 
     <EditText
@@ -52,7 +52,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:text="Register"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="#52BE80"
         android:textSize="44sp"
         tools:layout_editor_absoluteX="105dp"
         tools:layout_editor_absoluteY="75dp" />
@@ -82,14 +82,16 @@
         android:id="@+id/ReturnButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ReturnText"
-        android:layout_alignEnd="@+id/houseAddress"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="85dp"
+        android:layout_marginBottom="5dp"
         android:layout_weight="1"
         android:background="@android:color/transparent"
         android:onClick="LoginReturn"
         android:text="Click here!"
         android:textAllCaps="false"
-        android:textColor="@android:color/holo_red_light" />
+        android:textColor="#0B5345" />
 
     <EditText
         android:id="@+id/houseName"

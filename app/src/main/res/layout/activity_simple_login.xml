@@ -12,9 +12,9 @@
         android:id="@+id/account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Enter Account"
         android:visibility="visible"
@@ -33,16 +33,17 @@
         android:layout_alignStart="@+id/account"
         />
 
-    <TextView
+    <ImageView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
+        android:src="@mipmap/roomie_logo_full"
+        android:layout_width="420dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/newaccount"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:layout_centerInParent="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="44dp"
-        android:text="Roomie"
-        android:textColor="@android:color/holo_red_light"
-        android:textSize="44sp" />
+        android:layout_marginTop="100dp"
+        />
 
     <TextView
         android:id="@+id/newusertext"
@@ -50,7 +51,7 @@
         android:layout_height="wrap_content"
         android:text="New User? Create Account Here:"
         android:textSize="14sp"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="#0B5345"
         android:layout_marginBottom="13dp"
         android:layout_above="@+id/newaccount"
         android:layout_centerHorizontal="true" />
