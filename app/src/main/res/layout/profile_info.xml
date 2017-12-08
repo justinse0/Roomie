@@ -16,7 +16,7 @@
         android:id="@+id/static_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000FFF"
+        android:textColor="#0B5345"
         android:layout_below="@id/filler"
         android:textSize="24dp"
         android:text="Name: "
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/static_name"
-        android:textColor="#000FFF"
+        android:textColor="#0B5345"
         android:textSize="24dp"
         android:text="Email: "/>
     <TextView
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/static_email"
-        android:textColor="#000FFF"
+        android:textColor="#0B5345"
         android:textSize="24dp"
         android:text="House Name: " />
     <TextView
@@ -42,14 +42,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/static_housename"
-        android:textColor="#000FFF"
+        android:textColor="#0B5345"
         android:textSize="24dp"
         android:text="Address: " />
     <TextView
         android:id="@+id/static_busy"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#000FFF"
+        android:textColor="#0B5345"
         android:layout_below="@id/static_address"
         android:textSize="24dp"
         android:text="Busy? "
@@ -63,7 +63,7 @@
         android:layout_above="@+id/dym_email"
         android:layout_toEndOf="@+id/static_name"
         android:text="Name: "
-        android:textColor="#000FFF"
+        android:textColor="#0B5345"
         android:textSize="24dp" />
 
     <TextView
@@ -74,7 +74,7 @@
         android:layout_alignBottom="@+id/static_address"
         android:layout_toEndOf="@+id/static_address"
         android:text="Address: "
-        android:textColor="#000FFF"
+        android:textColor="#0B5345"
         android:textSize="24dp" />
 
     <TextView
@@ -84,7 +84,7 @@
         android:layout_above="@+id/static_housename"
         android:layout_toEndOf="@+id/static_email"
         android:text="Email: "
-        android:textColor="#000FFF"
+        android:textColor="#0B5345"
         android:textSize="24dp" />
 
     <TextView
@@ -95,7 +95,7 @@
         android:layout_alignBottom="@+id/static_housename"
         android:layout_toEndOf="@+id/static_housename"
         android:text="House Name: "
-        android:textColor="#000FFF"
+        android:textColor="#0B5345"
         android:textSize="24dp" />
 
     <TextView
@@ -107,6 +107,6 @@
         android:layout_toEndOf="@+id/static_busy"
         android:layout_marginEnd="15dp"
         android:text="Busy? "
-        android:textColor="#000FFF"
+        android:textColor="#0B5345"
         android:textSize="24dp" />
 </RelativeLayout>

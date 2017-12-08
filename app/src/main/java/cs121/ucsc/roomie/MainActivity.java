@@ -70,7 +70,7 @@ public class MainActivity extends Activity {
     private boolean currUserHasURL;
     public static String groupChatURL;
     private boolean userFound;
-    public boolean doNotDisturb;
+    public static boolean doNotDisturb;
     //private ContentLoadingProgressBar mProgressBar;
 
     public static User getUser(){
@@ -211,6 +211,16 @@ public class MainActivity extends Activity {
                             disturb.setBackgroundColor(Color.GREEN);
                             alternate=-1;
                         }*/
+
+                        dndSwitch = findViewById(R.id.dnd_switch);
+                        if (MainActivity.currUser.busy==0) {
+                            dndSwitch.setChecked(false);
+                            doNotDisturb = false;
+                        } else if (MainActivity.currUser.busy==1) {
+                            dndSwitch.setChecked(true);
+                            doNotDisturb = true;
+                        }
+
                         indexChop = MainActivity.currUser.userEmail.indexOf('@');
                         userChop = MainActivity.currUser.userEmail.substring(0, indexChop);
                         roomies.add(userChop);
