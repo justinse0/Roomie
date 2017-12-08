@@ -66,7 +66,7 @@ public class NewUserActivity extends Activity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     OpenChannelStore holder = snapshot.getValue(OpenChannelStore.class);
-                    if (!(holder.houseName.equals(HouseNameStore))){
+                    if ((holder.houseName.equals(HouseNameStore))){
                         HouseExistsStore = true;
                     }
                 }

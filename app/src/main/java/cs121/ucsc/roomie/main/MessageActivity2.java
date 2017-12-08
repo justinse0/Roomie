@@ -98,9 +98,11 @@ public class MessageActivity2 extends AppCompatActivity {
 
         //  channelUserList.add(MainActivity.currUser.msgID);
         
-            Log.d(TAG, "onCreate: house chat does not exist. Creating new chat");
-            createHouseChat();
-            MainActivity.groupChatExists = true;
+           Log.d(TAG, "onCreate: house chat does not exist. Creating new chat");
+           createHouseChat();
+           MainActivity.groupChatExists = true;
+
+        establishOpenChannel();
         /*else {
             Log.i(TAG, "onCreate: chat  URL" + MainActivity.groupChatURL);
             GroupChannel.getChannel(MainActivity.groupChatURL, new GroupChannel.GroupChannelGetHandler() {
@@ -127,7 +129,6 @@ public class MessageActivity2 extends AppCompatActivity {
                 });
             }
         }*/
-        establishOpenChannel();
     }
 
     /**
@@ -252,7 +253,9 @@ public class MessageActivity2 extends AppCompatActivity {
                 final OpenChannel newOpenChannel;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     OpenChannelStore openChannelStore = snapshot.getValue(OpenChannelStore.class);
-                    if (openChannelStore.channelExists){
+
+                    if (openChannelStore.houseName == MainActivity.currUser.houseName &&
+                            openChannelStore.channelExists){
                         channelExists = true;
                     }
                 }

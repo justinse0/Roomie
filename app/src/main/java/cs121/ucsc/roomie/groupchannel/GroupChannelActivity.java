@@ -25,19 +25,7 @@ public class GroupChannelActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_arrow_left_white_24_dp);
         }
-/*
-        if (savedInstanceState == null) {
-            // If started from launcher, load list of Open Channels
-            Fragment fragment = GroupChannelListFragment.newInstance();
 
-            FragmentManager manager = getSupportFragmentManager();
-            manager.popBackStack();
-
-            manager.beginTransaction()
-                    .replace(R.id.container_group_channel, fragment)
-                    .commit();
-        }
-*/
         String channelUrl = getIntent().getStringExtra("houseURL");
         if(channelUrl != null) {
             // If started from notification

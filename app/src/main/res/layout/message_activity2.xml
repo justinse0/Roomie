@@ -26,7 +26,7 @@
                 android:id="@+id/toolbar_main"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:theme="@style/Toolbar"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
 
                 app:popupTheme="@style/Theme.AppCompat.Light">
 
