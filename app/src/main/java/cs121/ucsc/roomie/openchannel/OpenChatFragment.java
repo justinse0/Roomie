@@ -113,7 +113,7 @@ public class OpenChatFragment extends Fragment {
 
         setRetainInstance(true);
 
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(false);
 
         mRootLayout = rootView.findViewById(R.id.layout_open_chat_root);
 
@@ -307,7 +307,7 @@ public class OpenChatFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
+/*
         if (id == R.id.action_open_chat_view_participants) {
             Intent intent = new Intent(getActivity(), ParticipantListActivity.class);
             intent.putExtra(EXTRA_CHANNEL_URL, mChannel.getUrl());
@@ -315,8 +315,8 @@ public class OpenChatFragment extends Fragment {
 
             return true;
         }
-
-        return super.onOptionsItemSelected(item);
+*/
+        return false;//super.onOptionsItemSelected(item);
     }
 
     private void setUpChatAdapter() {
