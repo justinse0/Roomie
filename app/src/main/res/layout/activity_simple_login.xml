@@ -12,9 +12,9 @@
         android:id="@+id/account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_below="@id/title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Enter Account"
         android:visibility="visible"
@@ -42,7 +42,7 @@
         android:adjustViewBounds="true"
         android:layout_centerInParent="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="100dp"
         />
 
     <TextView
