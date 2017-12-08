@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import cs121.ucsc.roomie.MainActivity;
+import cs121.ucsc.roomie.MessageActivity;
 import cs121.ucsc.roomie.OpenChannelStore;
 import cs121.ucsc.roomie.R;
 import cs121.ucsc.roomie.User;
@@ -52,12 +53,14 @@ public class MessageActivity2 extends AppCompatActivity {
     private static GroupChannel houseChannel;
     FirebaseAuth mAuth;
     DatabaseReference database;
+    private static boolean openChannelExists;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.message_activity2);
         mAuth = FirebaseAuth.getInstance();
+        openChannelExists= false;
         database = FirebaseDatabase.getInstance().getReference();
         Log.d("MessageActivity2", "passed setContentView");
         //       mToolbar = (Toolbar) findViewById(R.id.toolbar_main);
@@ -245,21 +248,22 @@ public class MessageActivity2 extends AppCompatActivity {
 
     private void establishOpenChannel(){
 
+        MessageActivity2.openChannelExists = false;
         database.child("OpenHouse").addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                boolean channelExists = false;
+
                 final OpenChannel newOpenChannel;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     OpenChannelStore openChannelStore = snapshot.getValue(OpenChannelStore.class);
 
-                    if (openChannelStore.houseName == MainActivity.currUser.houseName &&
+                    if (openChannelStore.houseName.equals(MainActivity.currUser.houseName) &&
                             openChannelStore.channelExists){
-                        channelExists = true;
+                        MessageActivity2.openChannelExists = true;
                     }
                 }
-                if (channelExists == false){
+                if (MessageActivity2.openChannelExists == false){
                     OpenChannel.createChannel(MainActivity.currUser.houseName, null, null,
                             new OpenChannel.OpenChannelCreateHandler() {
                                 @Override
